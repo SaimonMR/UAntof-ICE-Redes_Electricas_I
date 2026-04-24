@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)file:///C:/Users/Lenovo/Downloads/circuitos_serie_paralelo_2.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conexiones Serie y Paralelo · Circuitos Eléctricos I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./U2_Conexiones Serie y Paralelo · Circuitos Eléctricos I_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f9fb;
+    --surface2: #eef1f7;
+    --accent: #1a56db;
+    --accent2: #0e9f6e;
+    --accent3: #7e3af2;
+    --red: #e02424;
+    --amber: #d97706;
+    --text: #1a1f2e;
+    --muted: #6b7280;
+    --border: #d1d5db;
+    --border-light: #e9ecf2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #0f172a;
+    border-bottom: 1px solid #1e293b;
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(26,86,219,.18) 0%, transparent 70%);
+  }
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    background: rgba(26,86,219,.15);
+    border: 1px solid rgba(26,86,219,.35);
+    color: #93c5fd;
+    padding: .25rem .75rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    color: #fff;
+  }
+  h1 span { color: #60a5fa; }
+  .subtitle {
+    margin-top: .8rem;
+    color: #94a3b8;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: .02em;
+  }
+
+  /* ── LAYOUT ── */
+  main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+  }
+  section > h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.4rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--border-light);
+  }
+  section { margin-bottom: 3.5rem; }
+
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 1.5rem 0 .5rem;
+  }
+
+  p { margin-bottom: .8rem; color: var(--text); }
+
+  /* ── DEFINICION BLOCK ── */
+  .def-block {
+    display: flex;
+    gap: .85rem;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: .9rem 1.1rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .def-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .def-block p { margin: 0; font-size: .93rem; color: var(--text); line-height: 1.65; }
+  .def-block strong { color: var(--accent); }
+
+  /* ── FORMULA BOX ── */
+  .formula-box {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem;
+    margin: 1rem 0 1.4rem;
+    overflow-x: auto;
+  }
+  .formula-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    color: #64748b;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+  }
+  .formula {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.05rem;
+    color: #60a5fa;
+    display: block;
+    margin: .3rem 0;
+    font-weight: 600;
+  }
+  .formula-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .82rem;
+    color: #94a3b8;
+    display: block;
+    margin-top: .5rem;
+    line-height: 1.7;
+  }
+
+  /* ── TIP / NOTE ── */
+  .tip {
+    display: flex;
+    gap: .85rem;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 8px 8px 0;
+    padding: .9rem 1.1rem;
+    margin: 1rem 0;
+  }
+  .tip-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .tip p { margin: 0; font-size: .93rem; color: var(--text); line-height: 1.65; }
+  .tip strong { color: var(--accent2); }
+
+  /* ── TABLA COMPARATIVA ── */
+  .tabla-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+  }
+  th {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    font-weight: 600;
+    padding: .65rem 1rem;
+    text-align: left;
+  }
+  td {
+    padding: .65rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--surface); }
+  td code, th code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .82rem;
+    background: var(--surface2);
+    padding: .1rem .4rem;
+    border-radius: 3px;
+    color: var(--accent);
+  }
+
+  /* ── CIRCUIT SVG CONTAINER ── */
+  .circuit-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  /* ── CIRCUIT IN EXERCISE ── */
+  .circuit-ej {
+    background: #f8f9fb;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: .75rem 1rem;
+    margin: .75rem 0 .5rem;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .circuit-ej svg { max-width: 100%; height: auto; }
+
+  /* ── EXERCISES ── */
+  .exercise {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    background: var(--bg);
+  }
+  .exercise-header {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .7rem 1.1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .ex-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: #fff;
+    padding: .2rem .55rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .ex-num.basico   { background: #0e9f6e; }
+  .ex-num.intermedio { background: #1a56db; }
+  .ex-num.avanzado { background: #7e3af2; }
+  .exercise-header h4 {
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .exercise-body { padding: 1rem 1.1rem; }
+  .exercise-body p { font-size: .93rem; margin-bottom: .6rem; }
+
+  /* steps */
+  .steps { margin: .8rem 0; }
+  .step {
+    display: flex;
+    gap: .7rem;
+    margin-bottom: .55rem;
+    align-items: flex-start;
+  }
+  .step-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .step p { margin: 0; font-size: .9rem; line-height: 1.6; }
+
+  /* result box */
+  .result-box {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 6px 6px 0;
+    padding: .55rem .9rem;
+    margin-top: .75rem;
+  }
+  .result-box .r-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .68rem;
+    font-weight: 600;
+    color: var(--accent2);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .result-box .r-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .88rem;
+    color: #065f46;
+    font-weight: 600;
+  }
+
+  /* only-result */
+  .only-result {
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+    padding: .6rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+  }
+  .only-result .r-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .68rem;
+    font-weight: 600;
+    color: var(--accent2);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .only-result .r-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .85rem;
+    color: #065f46;
+    font-weight: 600;
+  }
+
+  /* ── DIFFICULTY LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.4rem;
+    font-size: .82rem;
+    color: var(--muted);
+    align-items: center;
+  }
+  .legend-item { display: flex; align-items: center; gap: .4rem; }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  /* ── REFERENCES ── */
+  .ref-list { list-style: none; padding: 0; }
+  .ref-list li {
+    padding: .55rem 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: .75rem;
+    align-items: baseline;
+  }
+  .ref-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border-light);
+    font-size: .82rem;
+    color: var(--muted);
+    background: var(--surface);
+  }
+
+  /* ── GRID 2 columnas ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: .9rem 1rem;
+  }
+  .card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+  }
+  .card-title.azul { color: var(--accent); }
+  .card-title.verde { color: var(--accent2); }
+  .card p { font-size: .9rem; margin-bottom: .4rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">INGENIERÍA CIVIL ELÉCTRICA · CIRCUITOS ELÉCTRICOS I</div>
+  <h1>Conexiones <span>Serie y Paralelo</span>,<br>Circuitos Equivalentes,<br>Divisores y Conductancia</h1>
+  <p class="subtitle">Definiciones · Fórmulas · Ejemplos resueltos · Ejercicios propuestos</p>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 1. CONEXIÓN EN SERIE                       -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">01 — Teoría</div>
+  <h2>Conexión en Serie</h2>
+
+  <div class="def-block">
+    <div class="def-icon">⟶</div>
+    <p><strong>Definición:</strong> Dos o más elementos están conectados en <strong>serie</strong> cuando están unidos por un <strong>nodo simple</strong>, es decir, un nodo que no comparten con ningún otro elemento del circuito. En consecuencia, las resistencias en serie —ya sean dos o más— comparten exactamente el <strong>mismo valor de corriente</strong>: la corriente circula por todos los elementos en forma secuencial sin ramificarse. Si se retira un elemento, el circuito queda abierto.</p>
+  </div>
+
+  <h3>Resistencia equivalente</h3>
+
+  <div class="tip" style="border-left-color: var(--accent); background: #eff6ff;">
+    <div class="tip-icon">≡</div>
+    <p style="color: var(--text);">Las resistencias conectadas en serie pueden representarse como <strong>una sola resistencia</strong> a través del cálculo de una <strong>resistencia equivalente</strong> R_eq, que produce el mismo efecto eléctrico (misma corriente, misma tensión total) que el conjunto original.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Resistencia equivalente serie</div>
+    <span class="formula">R_eq = R₁ + R₂ + R₃ + ··· + Rₙ</span>
+    <span class="formula-sub">
+      · Corriente idéntica en todos los elementos: I = V_T / R_eq<br>
+      · Tensión total (LVK): V_T = V₁ + V₂ + ··· + Vₙ<br>
+      · Caída en cada elemento: Vₖ = I · Rₖ<br>
+      · R_eq es siempre MAYOR que cualquier resistencia individual
+    </span>
+  </div>
+
+  <div class="circuit-wrap">
+    <svg viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg" width="480" height="130">
+      <text x="10" y="16" font-family="DM Sans,sans-serif" font-size="12" fill="#6b7280">Circuito serie — R₁, R₂, R₃</text>
+      <!-- conductor inferior -->
+      <line x1="30" y1="95" x2="470" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <!-- conductor superior izquierdo -->
+      <line x1="30" y1="55" x2="95" y2="55" stroke="#1a56db" stroke-width="2"></line>
+      <!-- R1 -->
+      <rect x="95" y="42" width="80" height="26" rx="5" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+      <text x="135" y="59" font-family="IBM Plex Mono,monospace" font-size="13" font-weight="600" fill="#1a56db" text-anchor="middle">R₁</text>
+      <line x1="175" y1="55" x2="210" y2="55" stroke="#1a56db" stroke-width="2"></line>
+      <!-- R2 -->
+      <rect x="210" y="42" width="80" height="26" rx="5" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+      <text x="250" y="59" font-family="IBM Plex Mono,monospace" font-size="13" font-weight="600" fill="#1a56db" text-anchor="middle">R₂</text>
+      <line x1="290" y1="55" x2="325" y2="55" stroke="#1a56db" stroke-width="2"></line>
+      <!-- R3 -->
+      <rect x="325" y="42" width="80" height="26" rx="5" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+      <text x="365" y="59" font-family="IBM Plex Mono,monospace" font-size="13" font-weight="600" fill="#1a56db" text-anchor="middle">R₃</text>
+      <line x1="405" y1="55" x2="470" y2="55" stroke="#1a56db" stroke-width="2"></line>
+      <!-- vertical derecha -->
+      <line x1="470" y1="55" x2="470" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <!-- fuente izquierda -->
+      <line x1="30" y1="55" x2="30" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <circle cx="30" cy="75" r="0"></circle>
+      <ellipse cx="30" cy="75" rx="14" ry="14" fill="none" stroke="#1a56db" stroke-width="2"></ellipse>
+      <text x="25" y="72" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db">+</text>
+      <text x="25" y="83" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db">−</text>
+      <text x="5" y="78" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db">V</text>
+      <!-- flecha corriente -->
+      <text x="145" y="36" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e">→ I (igual en todo el circuito)</text>
+    </svg>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">💡</div>
+    <p><strong>Regla mnemotécnica:</strong> En serie, los elementos comparten la <strong>misma corriente</strong>. La tensión se <em>reparte</em> proporcionalmente a las resistencias.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 2. CONEXIÓN EN PARALELO                    -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">02 — Teoría</div>
+  <h2>Conexión en Paralelo</h2>
+
+  <div class="def-block">
+    <div class="def-icon">⇌</div>
+    <p><strong>Definición:</strong> Dos o más elementos están conectados en <strong>paralelo</strong> cuando comparten el <strong>mismo par de nodos principales</strong>, es decir, están conectados exactamente entre los mismos dos nodos del circuito. En consecuencia, las resistencias en paralelo tienen el <strong>mismo valor de tensión</strong> en sus bornes. La corriente total que entrega la fuente se distribuye entre las distintas ramas.</p>
+  </div>
+
+  <div class="tip" style="border-left-color: var(--accent); background: #eff6ff;">
+    <div class="tip-icon">≡</div>
+    <p style="color: var(--text);">Al igual que en la conexión serie, cuando las resistencias están en <strong>paralelo</strong> es posible calcular una <strong>resistencia equivalente</strong> R_eq que reemplaza a todo el conjunto, produciendo la misma corriente total y la misma tensión en bornes que el grupo original.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Resistencia equivalente paralelo</div>
+    <span class="formula">1/R_eq = 1/R₁ + 1/R₂ + ··· + 1/Rₙ</span>
+    <span class="formula" style="margin-top:.6rem;">Caso dos resistencias:  R_eq = (R₁ · R₂) / (R₁ + R₂)</span>
+    <span class="formula-sub">
+      · Misma tensión en todas las ramas: V = V₁ = V₂ = ··· = Vₙ<br>
+      · Corriente en cada rama: Iₖ = V / Rₖ<br>
+      · Corriente total (LCK): I_T = I₁ + I₂ + ··· + Iₙ<br>
+      · R_eq es siempre MENOR que la menor resistencia individual
+    </span>
+  </div>
+
+  <div class="circuit-wrap">
+    <svg viewBox="0 0 460 185" xmlns="http://www.w3.org/2000/svg" width="440" height="185">
+      <text x="10" y="16" font-family="DM Sans,sans-serif" font-size="12" fill="#6b7280">Circuito paralelo — R₁ ∥ R₂ ∥ R₃</text>
+      <!-- bus superior (nodo A) -->
+      <line x1="60" y1="30" x2="420" y2="30" stroke="#1a56db" stroke-width="2"></line>
+      <!-- bus inferior (nodo B) -->
+      <line x1="60" y1="165" x2="420" y2="165" stroke="#1a56db" stroke-width="2"></line>
+      <!-- fuente: conectada de nodo B a nodo A por la izquierda -->
+      <line x1="60" y1="30" x2="60" y2="75" stroke="#1a56db" stroke-width="2"></line>
+      <ellipse cx="60" cy="97" rx="22" ry="22" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <text x="53" y="93" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">+</text>
+      <text x="53" y="107" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">−</text>
+      <text x="14" y="100" font-family="DM Sans,sans-serif" font-size="12" fill="#1a56db" font-weight="500">V</text>
+      <line x1="60" y1="119" x2="60" y2="165" stroke="#1a56db" stroke-width="2"></line>
+      <!-- nodo A y B marcados -->
+      <circle cx="60" cy="30" r="4" fill="#0e9f6e"></circle>
+      <circle cx="60" cy="165" r="4" fill="#0e9f6e"></circle>
+      <text x="62" y="22" font-family="DM Sans,sans-serif" font-size="12" fill="#0e9f6e" font-weight="600">A</text>
+      <text x="62" y="178" font-family="DM Sans,sans-serif" font-size="12" fill="#0e9f6e" font-weight="600">B</text>
+      <!-- rama R1 -->
+      <line x1="160" y1="30" x2="160" y2="52" stroke="#1a56db" stroke-width="1.5"></line>
+      <rect x="143" y="52" width="34" height="62" rx="5" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+      <text x="160" y="87" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="#1a56db" text-anchor="middle">R₁</text>
+      <line x1="160" y1="114" x2="160" y2="165" stroke="#1a56db" stroke-width="1.5"></line>
+      <text x="184" y="87" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₁</text>
+      <!-- rama R2 -->
+      <line x1="270" y1="30" x2="270" y2="52" stroke="#1a56db" stroke-width="1.5"></line>
+      <rect x="253" y="52" width="34" height="62" rx="5" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+      <text x="270" y="87" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+      <line x1="270" y1="114" x2="270" y2="165" stroke="#1a56db" stroke-width="1.5"></line>
+      <text x="294" y="87" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂</text>
+      <!-- rama R3 -->
+      <line x1="380" y1="30" x2="380" y2="52" stroke="#1a56db" stroke-width="1.5"></line>
+      <rect x="363" y="52" width="34" height="62" rx="5" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+      <text x="380" y="87" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="#4c1d95" text-anchor="middle">R₃</text>
+      <line x1="380" y1="114" x2="380" y2="165" stroke="#1a56db" stroke-width="1.5"></line>
+      <text x="404" y="87" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₃</text>
+      <!-- V_AB label -->
+      <text x="424" y="100" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db">V_AB</text>
+    </svg>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">💡</div>
+    <p><strong>Regla mnemotécnica:</strong> En paralelo, los elementos comparten la <strong>misma tensión</strong>. La corriente se <em>divide</em> inversamente proporcional a las resistencias.</p>
+  </div>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Magnitud</th>
+          <th>Serie</th>
+          <th>Paralelo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Variable igual</td>
+          <td>Corriente <code>I</code></td>
+          <td>Tensión <code>V</code></td>
+        </tr>
+        <tr>
+          <td>Variable que se suma</td>
+          <td>Tensión <code>V_T = ΣVₖ</code></td>
+          <td>Corriente <code>I_T = ΣIₖ</code></td>
+        </tr>
+        <tr>
+          <td>R equivalente</td>
+          <td><code>R_eq = ΣRₖ</code></td>
+          <td><code>1/R_eq = Σ(1/Rₖ)</code></td>
+        </tr>
+        <tr>
+          <td>Valor de R_eq</td>
+          <td>Mayor que R_max</td>
+          <td>Menor que R_min</td>
+        </tr>
+        <tr>
+          <td>Ley de Kirchhoff</td>
+          <td>LVK</td>
+          <td>LCK</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 3. DIVISOR DE TENSIÓN                      -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">03 — Teoría</div>
+  <h2>Divisor de Tensión</h2>
+
+  <div class="def-block">
+    <div class="def-icon">⬇</div>
+    <p><strong>Concepto general:</strong> En cualquier circuito, cuando una magnitud (tensión, corriente, potencia) se distribuye entre varios elementos, se dice que estos actúan como un <strong>divisor</strong> de dicha magnitud. El principio se aplica directamente cuando los elementos están conectados de modo que la magnitud de interés se reparte entre ellos de forma proporcional a sus valores.</p>
+  </div>
+
+  <h3>Divisor de tensión en resistencias</h3>
+
+  <div class="def-block">
+    <div class="def-icon">⬇</div>
+    <p><strong>Caso particular:</strong> El <strong>divisor de tensión resistivo</strong> es una configuración en serie en la que la tensión total de la fuente se distribuye entre las resistencias en proporción <strong>directa</strong> a sus valores. A mayor resistencia, mayor caída de tensión. Permite obtener una fracción de la tensión de entrada sin necesidad de una fuente adicional.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Fórmula general del divisor de tensión</div>
+    <span class="formula">Vₖ = V_T · Rₖ / (R₁ + R₂ + ··· + Rₙ)</span>
+    <span class="formula-sub">
+      · Vₖ = tensión en la resistencia k<br>
+      · V_T = tensión total aplicada por la fuente<br>
+      · El denominador es la resistencia equivalente serie R_eq<br>
+      · Mayor Rₖ → Mayor Vₖ (relación directa)<br>
+      · Caso dos resistencias: V₁ = V_T · R₁/(R₁+R₂)  |  V₂ = V_T · R₂/(R₁+R₂)
+    </span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 4. DIVISOR DE CORRIENTE                    -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">04 — Teoría</div>
+  <h2>Divisor de Corriente</h2>
+
+  <div class="def-block">
+    <div class="def-icon">⇒</div>
+    <p><strong>Concepto general:</strong> Cuando una corriente total llega a un nodo principal desde el que parten varias ramas en paralelo, dicha corriente se <strong>divide</strong> entre las ramas disponibles. Este fenómeno, válido para cualquier tipo de elemento en paralelo, se denomina <strong>divisor de corriente</strong>. La corriente se distribuye según las propiedades de cada rama.</p>
+  </div>
+
+  <h3>Divisor de corriente en resistencias</h3>
+
+  <div class="def-block">
+    <div class="def-icon">⇒</div>
+    <p><strong>Caso particular:</strong> En una configuración de <strong>resistencias en paralelo</strong>, la corriente total se distribuye entre las ramas en proporción <strong>inversa</strong> a sus resistencias: a menor resistencia, mayor corriente. Equivalentemente, la corriente es proporcional a la conductancia de cada rama.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Fórmulas divisor de corriente resistivo</div>
+    <span class="formula">I₁ = I_T · R₂ / (R₁ + R₂)          [dos ramas]</span>
+    <span class="formula">I₂ = I_T · R₁ / (R₁ + R₂)          [dos ramas]</span>
+    <span class="formula" style="margin-top:.6rem;">Iₖ = I_T · (R_eq / Rₖ) = I_T · (Gₖ / G_T)   [n ramas]</span>
+    <span class="formula-sub">
+      · La corriente que va por R₁ depende de R₂ y viceversa (relación cruzada e inversa)<br>
+      · La mayor corriente circula por la menor resistencia<br>
+      · G_T = G₁ + G₂ + ··· + Gₙ  (suma de conductancias totales)
+    </span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 5. CONDUCTANCIA                            -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">05 — Teoría</div>
+  <h2>Conductancia</h2>
+
+  <div class="def-block">
+    <div class="def-icon">⚡</div>
+    <p><strong>Definición:</strong> La <strong>conductancia</strong> (G) es la facilidad con que un elemento permite el paso de la corriente eléctrica. Es el recíproco de la resistencia. Su unidad en el SI es el <strong>Siemens (S)</strong>, también llamado mho (℧).</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Relaciones fundamentales</div>
+    <span class="formula">G = 1/R  [Siemens, S]</span>
+    <span class="formula">I = G · V</span>
+    <span class="formula" style="margin-top:.6rem;">G_eq (serie)    = 1 / (1/G₁ + 1/G₂ + ··· + 1/Gₙ)</span>
+    <span class="formula">G_eq (paralelo) = G₁ + G₂ + ··· + Gₙ</span>
+    <span class="formula-sub">
+      · Conductancia en paralelo se SUMA directamente (dual de R en serie)<br>
+      · Conductancia en serie combina como inverso de inversos (dual de R en paralelo)<br>
+      · Potencia: P = V² · G = I² / G
+    </span>
+  </div>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead>
+        <tr><th>Magnitud</th><th>Símbolo</th><th>Unidad SI</th><th>Relación</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Resistencia</td><td><code>R</code></td><td>Ohm (Ω)</td><td><code>R = V/I</code></td></tr>
+        <tr><td>Conductancia</td><td><code>G</code></td><td>Siemens (S)</td><td><code>G = I/V = 1/R</code></td></tr>
+        <tr><td>Resistividad</td><td><code>ρ</code></td><td>Ω·m</td><td><code>R = ρ·L/A</code></td></tr>
+        <tr><td>Conductividad</td><td><code>σ</code></td><td>S/m</td><td><code>σ = 1/ρ</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 6. ANÁLISIS DE FUENTES EN REDUCCIÓN        -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">06 — Teoría</div>
+  <h2>Fuentes en el Método de Reducción</h2>
+
+  <p>Cuando se aplica el método de reducción a un circuito con fuentes de voltaje y/o corriente, el tratamiento de cada fuente depende de <strong>cómo está conectada</strong> respecto a los demás elementos. Las reglas que siguen son consecuencia directa de las Leyes de Kirchhoff.</p>
+
+  <!-- ── 6.1 FUENTES DE VOLTAJE ── -->
+  <h3>6.1 Fuentes de Voltaje</h3>
+
+  <div class="def-block">
+    <div class="def-icon">⚡</div>
+    <p>En el análisis por reducción se trabaja con <strong>fuentes ideales independientes</strong>. Una <strong>fuente de voltaje ideal independiente</strong> impone una diferencia de potencial fija entre sus terminales cuyo valor está determinado por la propia fuente, sin depender de la corriente que circule ni de ninguna otra variable del circuito. Esta condición solo se cumple en el modelo ideal; en fuentes reales existe una resistencia interna que hace que la tensión de salida sí varíe con la carga.</p>
+    <p style="margin-top:.5rem;">En contraste, una <strong>fuente dependiente o controlada</strong> (que se estudiará más adelante) sí ve afectado su valor por alguna variable del circuito — una tensión o corriente en otro elemento — por lo que las reglas de combinación directa descritas aquí <strong>no se aplican</strong> a ese tipo de fuentes.</p>
+    <p style="margin-top:.5rem;">Cuando hay <strong>dos o más fuentes de voltaje en serie</strong>, la tensión equivalente se obtiene sumando algebraicamente sus valores según su <strong>polaridad relativa</strong>: si la terminal positiva de una coincide con la terminal positiva de la siguiente (mismo sentido), sus tensiones se <strong>suman</strong>; si una fuente está invertida respecto a la otra (sentidos opuestos), la de menor valor se <strong>resta</strong> de la mayor. El signo del resultado indica la polaridad dominante.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Fuentes de voltaje en serie — se suman algebraicamente</div>
+    <span class="formula">V_eq = V₁ + V₂           [mismo sentido de polaridad]</span>
+    <span class="formula">V_eq = V₁ − V₂           [sentidos opuestos]</span>
+    <span class="formula-sub">
+      · Signo (+): polaridades alineadas (+ → + → · · ·)<br>
+      · Signo (−): una fuente opone su polaridad a la otra<br>
+      · El resultado puede ser positivo, negativo o cero
+    </span>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">⛔</div>
+    <p><strong>Fuentes de voltaje en paralelo:</strong> solo es válido si tienen <strong>exactamente el mismo valor y polaridad</strong>. Si son distintas, se violaría la LVK — los mismos dos nodos no pueden tener simultáneamente dos tensiones diferentes. En la práctica esto genera una corriente teóricamente infinita entre las fuentes.</p>
+  </div>
+
+  <div class="circuit-wrap">
+    <svg viewBox="0 0 520 115" xmlns="http://www.w3.org/2000/svg" width="500" height="115">
+      <text x="60" y="14" font-family="DM Sans,sans-serif" font-size="11" fill="#6b7280">Fuentes en serie — mismo sentido</text>
+      <text x="310" y="14" font-family="DM Sans,sans-serif" font-size="11" fill="#6b7280">Fuentes en serie — sentido opuesto</text>
+      <!-- CASO 1: mismo sentido -->
+      <ellipse cx="55" cy="60" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <text x="47" y="56" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="700">+</text>
+      <text x="47" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="700">−</text>
+      <text x="30" y="46" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db">V₁</text>
+      <line x1="55" y1="42" x2="55" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="55" y1="25" x2="120" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <ellipse cx="120" cy="60" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <text x="112" y="56" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="700">+</text>
+      <text x="112" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="700">−</text>
+      <text x="95" y="46" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db">V₂</text>
+      <line x1="120" y1="42" x2="120" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="55" y1="78" x2="55" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="55" y1="95" x2="120" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="120" y1="78" x2="120" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <text x="170" y="63" font-family="IBM Plex Mono,monospace" font-size="18" fill="#0e9f6e">⟹</text>
+      <ellipse cx="230" cy="60" rx="20" ry="20" fill="white" stroke="#0e9f6e" stroke-width="2.5"></ellipse>
+      <text x="222" y="56" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0e9f6e" font-weight="700">+</text>
+      <text x="222" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0e9f6e" font-weight="700">−</text>
+      <text x="194" y="44" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e" font-weight="600">V₁+V₂</text>
+      <!-- CASO 2: sentido opuesto -->
+      <ellipse cx="315" cy="60" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <text x="307" y="56" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="700">+</text>
+      <text x="307" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="700">−</text>
+      <text x="290" y="46" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db">V₁</text>
+      <line x1="315" y1="42" x2="315" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="315" y1="25" x2="380" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <ellipse cx="380" cy="60" rx="18" ry="18" fill="white" stroke="#e02424" stroke-width="2"></ellipse>
+      <text x="372" y="56" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e02424" font-weight="700">−</text>
+      <text x="372" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#e02424" font-weight="700">+</text>
+      <text x="355" y="46" font-family="DM Sans,sans-serif" font-size="10" fill="#e02424">V₂</text>
+      <line x1="380" y1="42" x2="380" y2="25" stroke="#e02424" stroke-width="2"></line>
+      <line x1="315" y1="78" x2="315" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="315" y1="95" x2="380" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="380" y1="78" x2="380" y2="95" stroke="#e02424" stroke-width="2"></line>
+      <text x="410" y="63" font-family="IBM Plex Mono,monospace" font-size="18" fill="#0e9f6e">⟹</text>
+      <ellipse cx="470" cy="60" rx="20" ry="20" fill="white" stroke="#0e9f6e" stroke-width="2.5"></ellipse>
+      <text x="462" y="56" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0e9f6e" font-weight="700">+</text>
+      <text x="462" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0e9f6e" font-weight="700">−</text>
+      <text x="450" y="44" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e" font-weight="600">V₁−V₂</text>
+    </svg>
+  </div>
+
+  <!-- ── 6.2 FUENTES DE CORRIENTE ── -->
+  <h3>6.2 Fuentes de Corriente</h3>
+
+  <div class="def-block">
+    <div class="def-icon">↑</div>
+    <p>De manera análoga, una <strong>fuente de corriente ideal independiente</strong> impone una corriente fija en la rama donde está conectada, cuyo valor está determinado por la propia fuente, sin depender de la tensión que aparezca en sus terminales ni de ninguna otra variable del circuito. Es el elemento dual de la fuente de voltaje ideal independiente, y su valor tampoco se ve afectado por la carga externa en el modelo ideal.</p>
+    <p style="margin-top:.5rem;">Al igual que con las fuentes de voltaje, existen <strong>fuentes de corriente dependientes o controladas</strong> cuyo valor sí está gobernado por una variable del circuito. Estas requieren un tratamiento distinto y <strong>no se pueden combinar</strong> directamente con las reglas que se presentan a continuación.</p>
+    <p style="margin-top:.5rem;">Cuando hay <strong>dos o más fuentes de corriente en paralelo</strong>, la corriente equivalente se obtiene sumando algebraicamente sus valores según el <strong>sentido de sus flechas</strong>: si ambas flechas apuntan hacia el mismo nodo (mismo sentido), sus corrientes se <strong>suman</strong>; si las flechas apuntan en sentidos opuestos, la de menor valor se <strong>resta</strong> de la mayor. El sentido de la flecha resultante corresponde al de la fuente dominante.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-label">Fuentes de corriente en paralelo — se suman algebraicamente</div>
+    <span class="formula">I_eq = I₁ + I₂           [mismo sentido de flecha]</span>
+    <span class="formula">I_eq = I₁ − I₂           [sentidos contrarios]</span>
+    <span class="formula-sub">
+      · Se define un sentido de referencia (ej. "hacia el nodo superior")<br>
+      · Cada fuente contribuye con (+) si apunta en ese sentido, (−) si se opone<br>
+      · El resultado puede ser positivo, negativo o cero<br>
+      · Si I_eq = 0: las fuentes se cancelan → equivale a un circuito abierto
+    </span>
+  </div>
+
+  <div class="circuit-wrap">
+    <svg viewBox="0 0 520 120" xmlns="http://www.w3.org/2000/svg" width="500" height="120">
+      <text x="50" y="14" font-family="DM Sans,sans-serif" font-size="11" fill="#6b7280">Fuentes en paralelo — mismo sentido</text>
+      <text x="300" y="14" font-family="DM Sans,sans-serif" font-size="11" fill="#6b7280">Fuentes en paralelo — sentido opuesto</text>
+      <!-- CASO 1: mismo sentido -->
+      <line x1="30" y1="25" x2="175" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="30" y1="95" x2="175" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="30" y1="25" x2="30" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="175" y1="25" x2="175" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <!-- I1 -->
+      <ellipse cx="75" cy="60" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <line x1="75" y1="46" x2="75" y2="50" stroke="#1a56db" stroke-width="1.5"></line>
+      <line x1="66" y1="60" x2="84" y2="60" stroke="#1a56db" stroke-width="1.5"></line>
+      <polygon points="75,52 70,60 80,60" fill="#1a56db"></polygon>
+      <text x="52" y="45" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db">I₁↑</text>
+      <!-- I2 -->
+      <ellipse cx="135" cy="60" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <line x1="135" y1="46" x2="135" y2="50" stroke="#1a56db" stroke-width="1.5"></line>
+      <line x1="126" y1="60" x2="144" y2="60" stroke="#1a56db" stroke-width="1.5"></line>
+      <polygon points="135,52 130,60 140,60" fill="#1a56db"></polygon>
+      <text x="112" y="45" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db">I₂↑</text>
+      <text x="192" y="64" font-family="IBM Plex Mono,monospace" font-size="18" fill="#0e9f6e">⟹</text>
+      <!-- equivalente -->
+      <line x1="230" y1="25" x2="270" y2="25" stroke="#0e9f6e" stroke-width="2"></line>
+      <line x1="230" y1="95" x2="270" y2="95" stroke="#0e9f6e" stroke-width="2"></line>
+      <line x1="230" y1="25" x2="230" y2="95" stroke="#0e9f6e" stroke-width="2"></line>
+      <line x1="270" y1="25" x2="270" y2="95" stroke="#0e9f6e" stroke-width="2"></line>
+      <ellipse cx="250" cy="60" rx="18" ry="18" fill="white" stroke="#0e9f6e" stroke-width="2.5"></ellipse>
+      <line x1="250" y1="46" x2="250" y2="50" stroke="#0e9f6e" stroke-width="1.5"></line>
+      <line x1="241" y1="60" x2="259" y2="60" stroke="#0e9f6e" stroke-width="1.5"></line>
+      <polygon points="250,52 245,60 255,60" fill="#0e9f6e"></polygon>
+      <text x="218" y="44" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e" font-weight="600">I₁+I₂</text>
+      <!-- CASO 2: opuesto -->
+      <line x1="300" y1="25" x2="445" y2="25" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="300" y1="95" x2="445" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="300" y1="25" x2="300" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <line x1="445" y1="25" x2="445" y2="95" stroke="#1a56db" stroke-width="2"></line>
+      <!-- I1 apunta arriba -->
+      <ellipse cx="345" cy="60" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+      <line x1="345" y1="46" x2="345" y2="50" stroke="#1a56db" stroke-width="1.5"></line>
+      <line x1="336" y1="60" x2="354" y2="60" stroke="#1a56db" stroke-width="1.5"></line>
+      <polygon points="345,52 340,60 350,60" fill="#1a56db"></polygon>
+      <text x="322" y="45" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db">I₁↑</text>
+      <!-- I2 apunta abajo -->
+      <ellipse cx="405" cy="60" rx="18" ry="18" fill="white" stroke="#e02424" stroke-width="2"></ellipse>
+      <line x1="405" y1="74" x2="405" y2="70" stroke="#e02424" stroke-width="1.5"></line>
+      <line x1="396" y1="60" x2="414" y2="60" stroke="#e02424" stroke-width="1.5"></line>
+      <polygon points="405,68 400,60 410,60" fill="#e02424"></polygon>
+      <text x="382" y="45" font-family="DM Sans,sans-serif" font-size="10" fill="#e02424">I₂↓</text>
+      <text x="458" y="64" font-family="IBM Plex Mono,monospace" font-size="18" fill="#0e9f6e">⟹</text>
+      <ellipse cx="500" cy="60" rx="18" ry="18" fill="white" stroke="#0e9f6e" stroke-width="2.5"></ellipse>
+      <line x1="500" y1="46" x2="500" y2="50" stroke="#0e9f6e" stroke-width="1.5"></line>
+      <line x1="491" y1="60" x2="509" y2="60" stroke="#0e9f6e" stroke-width="1.5"></line>
+      <polygon points="500,52 495,60 505,60" fill="#0e9f6e"></polygon>
+      <text x="478" y="44" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e" font-weight="600">I₁−I₂</text>
+    </svg>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">⛔</div>
+    <p><strong>Fuentes de corriente en serie:</strong> solo es válido si tienen <strong>exactamente el mismo valor y sentido</strong>. Si son distintas, se viola la LCK — la corriente en un nodo no puede tomar dos valores distintos al mismo tiempo. El circuito sería físicamente inconsistente.</p>
+  </div>
+
+  <!-- ── 6.3 TABLA DUALIDAD ── -->
+  <h3>6.3 Principio de dualidad</h3>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Fuente de Voltaje</th>
+          <th>Fuente de Corriente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Combinación válida</td>
+          <td><strong>Serie</strong></td>
+          <td><strong>Paralelo</strong></td>
+        </tr>
+        <tr>
+          <td>Regla de combinación</td>
+          <td><code>V_eq = ΣVₖ</code> (con signo)</td>
+          <td><code>I_eq = ΣIₖ</code> (con signo)</td>
+        </tr>
+        <tr>
+          <td>Combinación inválida</td>
+          <td>Paralelo (si V₁ ≠ V₂)</td>
+          <td>Serie (si I₁ ≠ I₂)</td>
+        </tr>
+        <tr>
+          <td>Ley violada</td>
+          <td>LVK</td>
+          <td>LCK</td>
+        </tr>
+        <tr>
+          <td>Elemento neutro</td>
+          <td>0 V → cortocircuito</td>
+          <td>0 A → circuito abierto</td>
+        </tr>
+        <tr>
+          <td>En paralelo con R</td>
+          <td>La R no afecta al circuito externo</td>
+          <td>La R sí afecta (determina V)</td>
+        </tr>
+        <tr>
+          <td>En serie con R</td>
+          <td>La R sí afecta (determina I)</td>
+          <td>La R no afecta al circuito externo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── 6.4 CASOS ESPECIALES ── -->
+  <h3>6.4 Casos especiales — Fuentes con resistencias asociadas</h3>
+
+  <div class="grid2">
+    <div class="card" style="border-left: 3px solid var(--accent);">
+      <div class="card-title azul">Fuente de voltaje ∥ R</div>
+      <p>La fuente de voltaje <strong>impone la tensión</strong> en esos nodos sin importar R. La resistencia en paralelo no modifica la tensión del circuito externo — solo consume corriente adicional de la fuente. Para reducir el circuito visto desde fuera, la R en paralelo con la fuente de voltaje <strong>puede ignorarse</strong>.</p>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--accent2);">
+      <div class="card-title verde">Fuente de corriente en serie con R</div>
+      <p>La fuente de corriente <strong>impone la corriente</strong> en esa rama sin importar R. La resistencia en serie no modifica la corriente entregada al circuito externo — solo cambia la tensión interna. Para reducir el circuito visto desde fuera, la R en serie con la fuente de corriente <strong>puede ignorarse</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ── 6.5 EJEMPLO ── -->
+  <h3>6.5 Ejemplo resuelto — Tres fuentes de corriente en paralelo</h3>
+
+  <div class="ejemplo" style="background:#faeeda; border:0.5px solid #FAC775; border-radius:8px; padding:1rem 1.25rem; margin:1rem 0;">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#854F0B;margin-bottom:8px;">Ejemplo resuelto 6.1</div>
+    <p style="font-size:.93rem;font-weight:500;margin-bottom:10px;">I₁ = 4 A (↑), I₂ = 1 A (↓), I₃ = 3 A (↑) en paralelo con R₁ = 6 Ω y R₂ = 3 Ω. Calcule la tensión en los nodos.</p>
+    <div class="circuit-wrap" style="margin:0.75rem 0;">
+      <svg viewBox="0 0 520 155" xmlns="http://www.w3.org/2000/svg" width="500" height="155">
+        <!-- bus superior -->
+        <line x1="30" y1="18" x2="490" y2="18" stroke="#1a56db" stroke-width="2"></line>
+        <!-- bus inferior -->
+        <line x1="30" y1="138" x2="490" y2="138" stroke="#1a56db" stroke-width="2"></line>
+        <!-- cierres laterales -->
+        <line x1="30" y1="18" x2="30" y2="138" stroke="#1a56db" stroke-width="2"></line>
+        <line x1="490" y1="18" x2="490" y2="138" stroke="#1a56db" stroke-width="2"></line>
+        <!-- I1 ↑ -->
+        <line x1="90" y1="18" x2="90" y2="55" stroke="#1a56db" stroke-width="1.5"></line>
+        <ellipse cx="90" cy="78" rx="24" ry="24" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+        <line x1="90" y1="62" x2="90" y2="66" stroke="#1a56db" stroke-width="1.5"></line>
+        <line x1="80" y1="78" x2="100" y2="78" stroke="#1a56db" stroke-width="1.5"></line>
+        <polygon points="90,68 84,78 96,78" fill="#1a56db"></polygon>
+        <line x1="90" y1="102" x2="90" y2="138" stroke="#1a56db" stroke-width="1.5"></line>
+        <text x="68" y="14" font-family="IBM Plex Mono,monospace" font-size="11" fill="#1a56db" font-weight="600">I₁=4A↑</text>
+        <!-- I2 ↓ -->
+        <line x1="200" y1="18" x2="200" y2="55" stroke="#e02424" stroke-width="1.5"></line>
+        <ellipse cx="200" cy="78" rx="24" ry="24" fill="white" stroke="#e02424" stroke-width="2"></ellipse>
+        <line x1="200" y1="94" x2="200" y2="90" stroke="#e02424" stroke-width="1.5"></line>
+        <line x1="190" y1="78" x2="210" y2="78" stroke="#e02424" stroke-width="1.5"></line>
+        <polygon points="200,88 194,78 206,78" fill="#e02424"></polygon>
+        <line x1="200" y1="102" x2="200" y2="138" stroke="#e02424" stroke-width="1.5"></line>
+        <text x="178" y="14" font-family="IBM Plex Mono,monospace" font-size="11" fill="#e02424" font-weight="600">I₂=1A↓</text>
+        <!-- I3 ↑ -->
+        <line x1="310" y1="18" x2="310" y2="55" stroke="#1a56db" stroke-width="1.5"></line>
+        <ellipse cx="310" cy="78" rx="24" ry="24" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+        <line x1="310" y1="62" x2="310" y2="66" stroke="#1a56db" stroke-width="1.5"></line>
+        <line x1="300" y1="78" x2="320" y2="78" stroke="#1a56db" stroke-width="1.5"></line>
+        <polygon points="310,68 304,78 316,78" fill="#1a56db"></polygon>
+        <line x1="310" y1="102" x2="310" y2="138" stroke="#1a56db" stroke-width="1.5"></line>
+        <text x="288" y="14" font-family="IBM Plex Mono,monospace" font-size="11" fill="#1a56db" font-weight="600">I₃=3A↑</text>
+        <!-- R1 vertical -->
+        <line x1="405" y1="18" x2="405" y2="42" stroke="#1a56db" stroke-width="1.5"></line>
+        <rect x="385" y="42" width="40" height="52" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+        <text x="405" y="66" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁</text>
+        <text x="405" y="82" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" text-anchor="middle">6Ω</text>
+        <line x1="405" y1="94" x2="405" y2="138" stroke="#1a56db" stroke-width="1.5"></line>
+        <!-- R2 vertical -->
+        <line x1="460" y1="18" x2="460" y2="42" stroke="#1a56db" stroke-width="1.5"></line>
+        <rect x="440" y="42" width="40" height="52" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+        <text x="460" y="66" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+        <text x="460" y="82" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">3Ω</text>
+        <line x1="460" y1="94" x2="460" y2="138" stroke="#1a56db" stroke-width="1.5"></line>
+        <!-- V=? label -->
+        <text x="345" y="82" font-family="IBM Plex Mono,monospace" font-size="11" fill="#d97706" font-weight="600">V=?</text>
+      </svg>
+    </div>
+    <div style="margin:.8rem 0;">
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">1</span>
+        <p style="margin:0;font-size:.9rem;">Combinar fuentes (referencia ↑ positivo): I_eq = +4 − 1 + 3 = <strong>6 A ↑</strong></p>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">2</span>
+        <p style="margin:0;font-size:.9rem;">Combinar resistencias: R_eq = (6 × 3)/(6 + 3) = <strong>2 Ω</strong></p>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">3</span>
+        <p style="margin:0;font-size:.9rem;">Tensión en los nodos: V = I_eq × R_eq = 6 × 2 = <strong>12 V</strong></p>
+      </div>
+    </div>
+    <div style="background:#ecfdf5;border-left:3px solid #0e9f6e;border-radius:0 6px 6px 0;padding:.55rem .9rem;margin-top:.5rem;">
+      <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.68rem;font-weight:600;color:#0e9f6e;letter-spacing:.1em;text-transform:uppercase;margin-right:.65rem;">Resultado</span>
+      <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.88rem;color:#065f46;font-weight:600;">I_eq = 6 A | R_eq = 2 Ω | V = 12 V</span>
+    </div>
+  </div>
+
+  <!-- ── 6.6 EJEMPLO CIRCUITO MIXTO ── -->
+  <h3>6.6 Ejemplo resuelto — Fuentes de voltaje y corriente en el mismo circuito</h3>
+
+  <div class="ejemplo" style="background:#faeeda; border:0.5px solid #FAC775; border-radius:8px; padding:1rem 1.25rem; margin:1rem 0;">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#854F0B;margin-bottom:8px;">Ejemplo resuelto 6.2</div>
+    <p style="font-size:.93rem;font-weight:500;margin-bottom:10px;">Un circuito tiene en paralelo: una fuente de voltaje V₁ = 12 V con R₁ = 4 Ω en serie, y una fuente de corriente I₂ = 1 A con R₂ = 4 Ω en paralelo. Calcule la tensión en los nodos A-B y la corriente total entregada.</p>
+    <div style="margin:.8rem 0;">
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">1</span>
+        <p style="margin:0;font-size:.9rem;"><strong>Corriente equivalente de la rama V₁+R₁:</strong> La fuente de voltaje V₁ en serie con R₁ entrega hacia los nodos una corriente I₁ = V₁/R₁ = 12/4 = <strong>3 A</strong>. Esta rama aporta 3 A al paralelo.</p>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">2</span>
+        <p style="margin:0;font-size:.9rem;"><strong>Combinar corrientes en el nodo (mismo sentido):</strong> I_eq = 3 + 1 = <strong>4 A</strong></p>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">3</span>
+        <p style="margin:0;font-size:.9rem;"><strong>Resistencia equivalente en paralelo:</strong> R_eq = (4 × 4)/(4 + 4) = <strong>2 Ω</strong></p>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-bottom:.5rem;align-items:flex-start;">
+        <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.72rem;font-weight:600;color:#fff;background:#1a56db;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;">4</span>
+        <p style="margin:0;font-size:.9rem;"><strong>Tensión en nodos A-B:</strong> V_AB = I_eq × R_eq = 4 × 2 = <strong>8 V</strong></p>
+      </div>
+    </div>
+    <div style="background:#ecfdf5;border-left:3px solid #0e9f6e;border-radius:0 6px 6px 0;padding:.55rem .9rem;margin-top:.5rem;">
+      <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.68rem;font-weight:600;color:#0e9f6e;letter-spacing:.1em;text-transform:uppercase;margin-right:.65rem;">Resultado</span>
+      <span style="font-family:&#39;IBM Plex Mono&#39;,monospace;font-size:.88rem;color:#065f46;font-weight:600;">V_AB = 8 V | I_eq = 4 A | R_eq = 2 Ω</span>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">📌</div>
+    <p><strong>Reglas de oro para el método de reducción con fuentes:</strong> fuentes de voltaje se combinan <strong>en serie</strong> — se suman si tienen el mismo sentido de polaridad, se restan si son opuestas · fuentes de corriente se combinan <strong>en paralelo</strong> — se suman si sus flechas apuntan al mismo nodo, se restan si se oponen · una fuente de voltaje en paralelo con R no altera la tensión del circuito externo · una fuente de corriente en serie con R no altera la corriente entregada al circuito externo.</p>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 7. EJERCICIOS                              -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">07 — Práctica</div>
+  <h2>Ejercicios propuestos</h2>
+
+  <div class="legend">
+    <span>Dificultad:</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#0e9f6e;"></span>Básico</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#1a56db;"></span>Intermedio</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#7e3af2;"></span>Avanzado</span>
+  </div>
+
+  <!-- ─────────── EJ 01 — COMPLETO ─────────── -->
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 01</span>
+      <h4>Circuito serie — corriente y tensiones</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una fuente de <strong>24 V</strong> está conectada a tres resistencias en serie: R₁ = 2 Ω, R₂ = 4 Ω, R₃ = 6 Ω. Calcule la corriente del circuito y la caída de tensión en cada resistencia.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 520 110" xmlns="http://www.w3.org/2000/svg" width="500" height="110">
+          <!-- conductor superior -->
+          <line x1="50" y1="28" x2="100" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 -->
+          <rect x="100" y="16" width="80" height="24" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="140" y="32" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=2Ω</text>
+          <line x1="180" y1="28" x2="220" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R2 -->
+          <rect x="220" y="16" width="80" height="24" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="260" y="32" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₂=4Ω</text>
+          <line x1="300" y1="28" x2="340" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R3 -->
+          <rect x="340" y="16" width="80" height="24" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="380" y="32" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₃=6Ω</text>
+          <line x1="420" y1="28" x2="480" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <!-- conductor derecho bajando -->
+          <line x1="480" y1="28" x2="480" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <!-- conductor inferior -->
+          <line x1="50" y1="82" x2="480" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente izquierda -->
+          <line x1="50" y1="28" x2="50" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="50" cy="55" rx="16" ry="16" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="43" y="51" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="43" y="63" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="6" y="59" font-family="DM Sans,sans-serif" font-size="12" fill="#1a56db" font-weight="500">24V</text>
+          <!-- flecha corriente -->
+          <text x="188" y="14" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e">→ I</text>
+          <!-- caídas de tensión -->
+          <text x="108" y="55" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V₁</text>
+          <text x="228" y="55" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V₂</text>
+          <text x="348" y="55" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V₃</text>
+          <!-- GND línea -->
+          <text x="130" y="98" font-family="DM Sans,sans-serif" font-size="10" fill="#6b7280">Serie · misma I en todos los elementos</text>
+        </svg>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-n">1</span>
+          <p>Resistencia equivalente: R_eq = R₁ + R₂ + R₃ = 2 + 4 + 6 = <strong>12 Ω</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">2</span>
+          <p>Corriente de circuito: I = V_T / R_eq = 24 / 12 = <strong>2 A</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">3</span>
+          <p>Caídas de tensión: V₁ = 2×2 = <strong>4 V</strong> · V₂ = 2×4 = <strong>8 V</strong> · V₃ = 2×6 = <strong>12 V</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">4</span>
+          <p>Verificación LVK: 4 + 8 + 12 = 24 V ✓</p>
+        </div>
+      </div>
+      <div class="result-box">
+        <span class="r-label">Resultado</span>
+        <span class="r-val">I = 2 A | V₁ = 4 V | V₂ = 8 V | V₃ = 12 V</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── EJ 02 — COMPLETO ─────────── -->
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 02</span>
+      <h4>Circuito paralelo — resistencia equivalente y corrientes</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una fuente de <strong>12 V</strong> alimenta tres resistencias en paralelo: R₁ = 6 Ω, R₂ = 12 Ω, R₃ = 4 Ω. Calcule R_eq, las corrientes de rama y la corriente total.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 450 175" xmlns="http://www.w3.org/2000/svg" width="430" height="175">
+          <!-- bus superior nodo A -->
+          <line x1="55" y1="22" x2="420" y2="22" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior nodo B -->
+          <line x1="55" y1="158" x2="420" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente entre A y B, lado izquierdo -->
+          <line x1="55" y1="22" x2="55" y2="68" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="55" cy="90" rx="22" ry="22" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="48" y="86" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">+</text>
+          <text x="48" y="98" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">−</text>
+          <text x="8" y="93" font-family="DM Sans,sans-serif" font-size="12" fill="#1a56db" font-weight="500">12V</text>
+          <line x1="55" y1="112" x2="55" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <!-- nodo A y B -->
+          <circle cx="55" cy="22" r="4" fill="#0e9f6e"></circle>
+          <circle cx="55" cy="158" r="4" fill="#0e9f6e"></circle>
+          <text x="57" y="14" font-family="DM Sans,sans-serif" font-size="12" fill="#0e9f6e" font-weight="600">A</text>
+          <text x="57" y="172" font-family="DM Sans,sans-serif" font-size="12" fill="#0e9f6e" font-weight="600">B</text>
+          <!-- rama R1 -->
+          <line x1="155" y1="22" x2="155" y2="47" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="136" y="47" width="38" height="64" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="155" y="76" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₁</text>
+          <text x="155" y="90" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" text-anchor="middle">6Ω</text>
+          <line x1="155" y1="111" x2="155" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="180" y="88" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₁</text>
+          <!-- rama R2 -->
+          <line x1="270" y1="22" x2="270" y2="47" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="251" y="47" width="38" height="64" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="270" y="76" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+          <text x="270" y="90" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">12Ω</text>
+          <line x1="270" y1="111" x2="270" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="295" y="88" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂</text>
+          <!-- rama R3 -->
+          <line x1="385" y1="22" x2="385" y2="47" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="366" y="47" width="38" height="64" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="385" y="76" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#4c1d95" text-anchor="middle">R₃</text>
+          <text x="385" y="90" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">4Ω</text>
+          <line x1="385" y1="111" x2="385" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="410" y="88" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₃</text>
+        </svg>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-n">1</span>
+          <p>Inverso de R_eq: 1/R_eq = 1/6 + 1/12 + 1/4 = 2/12 + 1/12 + 3/12 = 6/12 → R_eq = <strong>2 Ω</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">2</span>
+          <p>Corriente en cada rama: I₁ = 12/6 = <strong>2 A</strong> · I₂ = 12/12 = <strong>1 A</strong> · I₃ = 12/4 = <strong>3 A</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">3</span>
+          <p>Corriente total: I_T = I₁ + I₂ + I₃ = 2 + 1 + 3 = <strong>6 A</strong></p>
+        </div>
+        <div class="step">
+          <span class="step-n">4</span>
+          <p>Verificación LCK: I_T = V/R_eq = 12/2 = 6 A ✓</p>
+        </div>
+      </div>
+      <div class="result-box">
+        <span class="r-label">Resultado</span>
+        <span class="r-val">R_eq = 2 Ω | I_T = 6 A | I₁ = 2 A, I₂ = 1 A, I₃ = 3 A</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── EJ 03–20: solo resultado ─────────── -->
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 03</span>
+      <h4>Serie — cuatro resistencias</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Cuatro resistencias R₁ = 10 Ω, R₂ = 20 Ω, R₃ = 30 Ω, R₄ = 40 Ω están conectadas en serie a una fuente de 50 V. Calcule la corriente y la tensión en R₃.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 580 100" xmlns="http://www.w3.org/2000/svg" width="540" height="100">
+          <line x1="50" y1="24" x2="95" y2="24" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="95" y="13" width="75" height="22" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="132" y="28" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=10Ω</text>
+          <line x1="170" y1="24" x2="205" y2="24" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="205" y="13" width="75" height="22" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="242" y="28" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₂=20Ω</text>
+          <line x1="280" y1="24" x2="315" y2="24" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="315" y="13" width="75" height="22" rx="4" fill="#fef9c3" stroke="#d97706" stroke-width="2"></rect>
+          <text x="352" y="28" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#92400e" text-anchor="middle">R₃=30Ω</text>
+          <line x1="390" y1="24" x2="425" y2="24" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="425" y="13" width="75" height="22" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="462" y="28" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₄=40Ω</text>
+          <line x1="500" y1="24" x2="540" y2="24" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="540" y1="24" x2="540" y2="76" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="50" y1="76" x2="540" y2="76" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="50" y1="24" x2="50" y2="76" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="50" cy="50" rx="14" ry="14" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="43" y="47" font-family="IBM Plex Mono,monospace" font-size="8" fill="#1a56db" font-weight="600">+</text>
+          <text x="43" y="57" font-family="IBM Plex Mono,monospace" font-size="8" fill="#1a56db" font-weight="600">−</text>
+          <text x="8" y="53" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">50V</text>
+          <text x="318" y="50" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">← V₃?</text>
+          <text x="160" y="10" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I = ?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">I = 0.5 A | V₃ = 15 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 04</span>
+      <h4>Divisor de tensión básico</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Un divisor formado por R₁ = 8 kΩ y R₂ = 2 kΩ está alimentado por 15 V. Calcule la tensión de salida V₂ (en bornes de R₂).</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 360 140" xmlns="http://www.w3.org/2000/svg" width="340" height="140">
+          <!-- fuente -->
+          <ellipse cx="40" cy="70" rx="16" ry="16" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="33" y="66" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="33" y="78" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="5" y="73" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">15V</text>
+          <!-- conductor superior -->
+          <line x1="40" y1="54" x2="40" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="18" x2="160" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 vertical -->
+          <rect x="148" y="18" width="24" height="50" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="190" y="38" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db">R₁=8kΩ</text>
+          <!-- nodo medio -->
+          <line x1="160" y1="68" x2="160" y2="90" stroke="#1a56db" stroke-width="2"></line>
+          <circle cx="160" cy="68" r="3.5" fill="#0e9f6e"></circle>
+          <!-- R2 vertical -->
+          <rect x="148" y="90" width="24" height="30" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="190" y="109" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46">R₂=2kΩ</text>
+          <!-- conductor inferior -->
+          <line x1="160" y1="120" x2="160" y2="132" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="132" x2="160" y2="132" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="86" x2="40" y2="132" stroke="#1a56db" stroke-width="2"></line>
+          <!-- salida V2 -->
+          <line x1="160" y1="68" x2="300" y2="68" stroke="#0e9f6e" stroke-width="1.5" stroke-dasharray="5 3"></line>
+          <line x1="160" y1="132" x2="300" y2="132" stroke="#0e9f6e" stroke-width="1.5" stroke-dasharray="5 3"></line>
+          <circle cx="300" cy="68" r="4" fill="white" stroke="#0e9f6e" stroke-width="2"></circle>
+          <circle cx="300" cy="132" r="4" fill="white" stroke="#0e9f6e" stroke-width="2"></circle>
+          <text x="306" y="73" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e" font-weight="600">+</text>
+          <text x="304" y="105" font-family="IBM Plex Mono,monospace" font-size="11" fill="#0e9f6e" font-weight="600">V₂=?</text>
+          <text x="306" y="137" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e" font-weight="600">−</text>
+          <text x="188" y="60" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">← nodo</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">V₂ = 3 V | V₁ = 12 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 05</span>
+      <h4>Divisor de tensión — diseño inverso</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Diseñe un divisor de tensión con dos resistencias que entregue exactamente 5 V desde una fuente de 15 V, usando R₁ + R₂ = 10 kΩ. Determine R₁ y R₂.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 360 140" xmlns="http://www.w3.org/2000/svg" width="340" height="140">
+          <ellipse cx="40" cy="70" rx="16" ry="16" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="33" y="66" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="33" y="78" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="5" y="73" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">15V</text>
+          <line x1="40" y1="54" x2="40" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="18" x2="160" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="148" y="18" width="24" height="50" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="2"></rect>
+          <text x="182" y="34" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#92400e">R₁=?</text>
+          <text x="182" y="47" font-family="IBM Plex Mono,monospace" font-size="9" fill="#92400e">(calcular)</text>
+          <line x1="160" y1="68" x2="160" y2="90" stroke="#1a56db" stroke-width="2"></line>
+          <circle cx="160" cy="68" r="3.5" fill="#0e9f6e"></circle>
+          <rect x="148" y="90" width="24" height="30" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="2"></rect>
+          <text x="182" y="109" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#92400e">R₂=?</text>
+          <line x1="160" y1="120" x2="160" y2="132" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="132" x2="160" y2="132" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="86" x2="40" y2="132" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="160" y1="68" x2="300" y2="68" stroke="#0e9f6e" stroke-width="1.5" stroke-dasharray="5 3"></line>
+          <line x1="160" y1="132" x2="300" y2="132" stroke="#0e9f6e" stroke-width="1.5" stroke-dasharray="5 3"></line>
+          <circle cx="300" cy="68" r="4" fill="white" stroke="#0e9f6e" stroke-width="2"></circle>
+          <circle cx="300" cy="132" r="4" fill="white" stroke="#0e9f6e" stroke-width="2"></circle>
+          <text x="306" y="73" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e" font-weight="600">+</text>
+          <text x="304" y="105" font-family="IBM Plex Mono,monospace" font-size="12" fill="#0e9f6e" font-weight="700">5V</text>
+          <text x="306" y="137" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e" font-weight="600">−</text>
+          <text x="185" y="22" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6b7280">R₁+R₂=10kΩ</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R₂ = 3.33 kΩ | R₁ = 6.67 kΩ</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 06</span>
+      <h4>Divisor de corriente — dos ramas</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una fuente de corriente de 10 A alimenta dos resistencias en paralelo: R₁ = 4 Ω y R₂ = 6 Ω. Determine la corriente en cada rama.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 380 130" xmlns="http://www.w3.org/2000/svg" width="360" height="130">
+          <!-- nodo A y B -->
+          <line x1="70" y1="15" x2="70" y2="115" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="320" y1="15" x2="320" y2="115" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente corriente -->
+          <ellipse cx="35" cy="65" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <line x1="35" y1="53" x2="35" y2="55" stroke="#1a56db" stroke-width="1"></line>
+          <line x1="28" y1="65" x2="42" y2="65" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="35,57 31,65 39,65" fill="#1a56db"></polygon>
+          <line x1="35" y1="47" x2="35" y2="15" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="15" x2="70" y2="15" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="83" x2="35" y2="115" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="115" x2="70" y2="115" stroke="#1a56db" stroke-width="2"></line>
+          <text x="2" y="62" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db" font-weight="500">I_T</text>
+          <text x="2" y="74" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db" font-weight="500">=10A</text>
+          <!-- rama R1 -->
+          <line x1="70" y1="40" x2="140" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="140" y="28" width="90" height="24" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="185" y="44" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁ = 4 Ω</text>
+          <line x1="230" y1="40" x2="320" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="98" y="36" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I₁=?</text>
+          <!-- rama R2 -->
+          <line x1="70" y1="90" x2="140" y2="90" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="140" y="78" width="90" height="24" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="185" y="94" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">R₂ = 6 Ω</text>
+          <line x1="230" y1="90" x2="320" y2="90" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="98" y="86" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I₂=?</text>
+          <!-- nodos -->
+          <circle cx="70" cy="15" r="3.5" fill="#1a56db"></circle>
+          <circle cx="320" cy="15" r="3.5" fill="#1a56db"></circle>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">I₁ = 6 A | I₂ = 4 A</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num basico">EJ 07</span>
+      <h4>Conductancia — relaciones básicas</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Un resistor disipa 50 W cuando circulan 2 A. Determine su resistencia, conductancia y la tensión en sus terminales.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 340 90" xmlns="http://www.w3.org/2000/svg" width="320" height="90">
+          <!-- símbolo resistor con datos -->
+          <line x1="30" y1="45" x2="90" y2="45" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="90" y="30" width="120" height="30" rx="5" fill="#fef3c7" stroke="#d97706" stroke-width="2"></rect>
+          <text x="150" y="48" font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" fill="#92400e" text-anchor="middle">R = ?</text>
+          <line x1="210" y1="45" x2="280" y2="45" stroke="#1a56db" stroke-width="2"></line>
+          <!-- flechas corriente -->
+          <text x="40" y="38" font-family="DM Sans,sans-serif" font-size="11" fill="#0e9f6e">→ I = 2A</text>
+          <!-- tensión V -->
+          <line x1="90" y1="72" x2="210" y2="72" stroke="#0e9f6e" stroke-width="1.5" stroke-dasharray="4 3"></line>
+          <text x="120" y="85" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0e9f6e">V = ?</text>
+          <!-- potencia label -->
+          <rect x="92" y="10" width="118" height="18" rx="3" fill="#fef9c3" stroke="#d97706" stroke-width="1"></rect>
+          <text x="151" y="22" font-family="IBM Plex Mono,monospace" font-size="10" fill="#92400e" text-anchor="middle">P = 50 W</text>
+          <!-- terminales -->
+          <circle cx="30" cy="45" r="4" fill="white" stroke="#1a56db" stroke-width="2"></circle>
+          <circle cx="280" cy="45" r="4" fill="white" stroke="#1a56db" stroke-width="2"></circle>
+          <text x="4" y="49" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db">+</text>
+          <text x="284" y="49" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db">−</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R = 12.5 Ω | G = 0.08 S | V = 25 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 08</span>
+      <h4>Circuito mixto serie-paralelo</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Un circuito tiene R₁ = 5 Ω en serie con la combinación paralela de R₂ = 8 Ω y R₃ = 8 Ω. La fuente es de 20 V. Encuentre la corriente total y la tensión en el paralelo.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 450 145" xmlns="http://www.w3.org/2000/svg" width="430" height="145">
+          <!-- fuente -->
+          <ellipse cx="35" cy="72" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="28" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="28" y="80" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="4" y="75" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">20V</text>
+          <!-- conductor superior -->
+          <line x1="35" y1="54" x2="35" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="18" x2="105" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- conductor inferior global -->
+          <line x1="35" y1="90" x2="35" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="128" x2="418" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 serie en conductor superior -->
+          <rect x="105" y="7" width="80" height="22" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="145" y="22" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=5Ω</text>
+          <line x1="185" y1="18" x2="240" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- nodo A del paralelo -->
+          <circle cx="240" cy="18" r="3.5" fill="#1a56db"></circle>
+          <!-- bus superior del paralelo — termina en R3 (x=418) -->
+          <line x1="240" y1="18" x2="418" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- cierre derecho del paralelo justo al borde de R3 -->
+          <line x1="418" y1="18" x2="418" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R2 vertical -->
+          <line x1="300" y1="18" x2="300" y2="42" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="282" y="42" width="36" height="44" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="300" y="62" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+          <text x="300" y="76" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">8Ω</text>
+          <line x1="300" y1="86" x2="300" y2="128" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- R3 vertical — centrada en x=382, terminando en x=418 del bus -->
+          <line x1="382" y1="18" x2="382" y2="42" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="364" y="42" width="36" height="44" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="382" y="62" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#4c1d95" text-anchor="middle">R₃</text>
+          <text x="382" y="76" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">8Ω</text>
+          <line x1="382" y1="86" x2="382" y2="128" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- labels -->
+          <text x="112" y="13" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I_T=?</text>
+          <text x="248" y="75" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V_par=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 9 Ω | I_T ≈ 2.22 A | V_paralelo ≈ 8.89 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 09</span>
+      <h4>Divisor de corriente — tres ramas</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una fuente de corriente de 18 A alimenta tres ramas en paralelo: R₁ = 2 Ω, R₂ = 3 Ω, R₃ = 9 Ω. Calcule la corriente en cada rama.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 450 170" xmlns="http://www.w3.org/2000/svg" width="430" height="170">
+          <!-- bus superior nodo A -->
+          <line x1="55" y1="20" x2="420" y2="20" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior nodo B -->
+          <line x1="55" y1="155" x2="420" y2="155" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente corriente izquierda -->
+          <line x1="55" y1="20" x2="55" y2="68" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="55" cy="87" rx="20" ry="20" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <line x1="55" y1="74" x2="55" y2="77" stroke="#1a56db" stroke-width="1.5"></line>
+          <line x1="46" y1="87" x2="64" y2="87" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="55,79 50,87 60,87" fill="#1a56db"></polygon>
+          <line x1="55" y1="107" x2="55" y2="155" stroke="#1a56db" stroke-width="2"></line>
+          <text x="6" y="84" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db" font-weight="500">I_T</text>
+          <text x="6" y="96" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db" font-weight="500">=18A</text>
+          <!-- nodos -->
+          <circle cx="55" cy="20" r="4" fill="#0e9f6e"></circle>
+          <circle cx="55" cy="155" r="4" fill="#0e9f6e"></circle>
+          <!-- R1 -->
+          <line x1="155" y1="20" x2="155" y2="44" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="134" y="44" width="42" height="67" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="155" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁</text>
+          <text x="155" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" text-anchor="middle">2Ω</text>
+          <line x1="155" y1="111" x2="155" y2="155" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="185" y="87" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₁=?</text>
+          <!-- R2 -->
+          <line x1="275" y1="20" x2="275" y2="44" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="254" y="44" width="42" height="67" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="275" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+          <text x="275" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">3Ω</text>
+          <line x1="275" y1="111" x2="275" y2="155" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="305" y="87" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂=?</text>
+          <!-- R3 -->
+          <line x1="390" y1="20" x2="390" y2="44" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="369" y="44" width="42" height="67" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="390" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#4c1d95" text-anchor="middle">R₃</text>
+          <text x="390" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">9Ω</text>
+          <line x1="390" y1="111" x2="390" y2="155" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="415" y="87" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₃=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">I₁ = 9 A | I₂ = 6 A | I₃ = 3 A</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 10</span>
+      <h4>Conductancia en paralelo</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Tres conductancias G₁ = 0.5 S, G₂ = 0.25 S, G₃ = 0.1 S están en paralelo con V = 20 V aplicados. Calcule la corriente en cada rama y la corriente total.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 450 175" xmlns="http://www.w3.org/2000/svg" width="430" height="175">
+          <!-- bus superior nodo A -->
+          <line x1="55" y1="20" x2="420" y2="20" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior nodo B -->
+          <line x1="55" y1="158" x2="420" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente tensión izquierda -->
+          <line x1="55" y1="20" x2="55" y2="68" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="55" cy="89" rx="21" ry="21" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="48" y="85" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">+</text>
+          <text x="48" y="97" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">−</text>
+          <text x="5" y="87" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">20V</text>
+          <line x1="55" y1="110" x2="55" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <circle cx="55" cy="20" r="4" fill="#0e9f6e"></circle>
+          <circle cx="55" cy="158" r="4" fill="#0e9f6e"></circle>
+          <!-- G1 — rombo de bus a bus -->
+          <line x1="155" y1="20" x2="155" y2="52" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="155,52 185,89 155,126 125,89" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></polygon>
+          <text x="155" y="84" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">G₁</text>
+          <text x="155" y="98" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" text-anchor="middle">0.5S</text>
+          <line x1="155" y1="126" x2="155" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="192" y="92" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₁=?</text>
+          <!-- G2 -->
+          <line x1="270" y1="20" x2="270" y2="52" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="270,52 300,89 270,126 240,89" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></polygon>
+          <text x="270" y="84" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">G₂</text>
+          <text x="270" y="98" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">0.25S</text>
+          <line x1="270" y1="126" x2="270" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="307" y="92" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂=?</text>
+          <!-- G3 -->
+          <line x1="385" y1="20" x2="385" y2="52" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="385,52 415,89 385,126 355,89" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></polygon>
+          <text x="385" y="84" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#4c1d95" text-anchor="middle">G₃</text>
+          <text x="385" y="98" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">0.1S</text>
+          <line x1="385" y1="126" x2="385" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="422" y="92" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₃=?</text>
+          <text x="100" y="12" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6b7280">◇ = conductancia</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">I₁ = 10 A | I₂ = 5 A | I₃ = 2 A | I_T = 17 A | G_eq = 0.85 S</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 11</span>
+      <h4>Circuito equivalente serie — reducción paso a paso</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Calcule la resistencia equivalente vista desde los terminales A-B del siguiente circuito: R₁ = 4 Ω, R₂ = 8 Ω y R₃ = 12 Ω están conectadas en serie. Todo el conjunto se conecta a una fuente de 48 V. Calcule además la corriente total y la potencia disipada en R₂.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 520 100" xmlns="http://www.w3.org/2000/svg" width="500" height="100">
+          <line x1="45" y1="25" x2="95" y2="25" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="95" y="13" width="80" height="24" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="135" y="29" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=4Ω</text>
+          <line x1="175" y1="25" x2="215" y2="25" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="215" y="13" width="80" height="24" rx="4" fill="#fef9c3" stroke="#d97706" stroke-width="2"></rect>
+          <text x="255" y="29" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#92400e" text-anchor="middle">R₂=8Ω</text>
+          <line x1="295" y1="25" x2="335" y2="25" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="335" y="13" width="80" height="24" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="375" y="29" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₃=12Ω</text>
+          <line x1="415" y1="25" x2="470" y2="25" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="470" y1="25" x2="470" y2="78" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="45" y1="78" x2="470" y2="78" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="45" y1="25" x2="45" y2="78" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="45" cy="51" rx="16" ry="16" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="38" y="47" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="38" y="59" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="4" y="54" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">48V</text>
+          <text x="215" y="50" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">P=?</text>
+          <text x="175" y="12" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I_T=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 24 Ω | I_T = 2 A | P_{R2} = 32 W</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 12</span>
+      <h4>Circuito equivalente paralelo — reducción</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Tres resistencias R₁ = 6 Ω, R₂ = 3 Ω y R₃ = 9 Ω están conectadas en paralelo entre los nodos A y B, alimentadas por una fuente de 18 V. Calcule la resistencia equivalente, la corriente total y la potencia total disipada.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 450 170" xmlns="http://www.w3.org/2000/svg" width="430" height="170">
+          <!-- bus superior nodo A -->
+          <line x1="55" y1="20" x2="420" y2="20" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior nodo B -->
+          <line x1="55" y1="155" x2="420" y2="155" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente entre A y B -->
+          <line x1="55" y1="20" x2="55" y2="66" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="55" cy="87" rx="21" ry="21" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="48" y="83" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">+</text>
+          <text x="48" y="95" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" font-weight="600">−</text>
+          <text x="5" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">18V</text>
+          <line x1="55" y1="108" x2="55" y2="155" stroke="#1a56db" stroke-width="2"></line>
+          <circle cx="55" cy="20" r="4" fill="#0e9f6e"></circle>
+          <circle cx="55" cy="155" r="4" fill="#0e9f6e"></circle>
+          <text x="57" y="13" font-family="DM Sans,sans-serif" font-size="12" fill="#0e9f6e" font-weight="600">A</text>
+          <text x="57" y="168" font-family="DM Sans,sans-serif" font-size="12" fill="#0e9f6e" font-weight="600">B</text>
+          <!-- R1 -->
+          <line x1="155" y1="20" x2="155" y2="44" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="134" y="44" width="42" height="67" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="155" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁</text>
+          <text x="155" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" text-anchor="middle">6Ω</text>
+          <line x1="155" y1="111" x2="155" y2="155" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- R2 -->
+          <line x1="270" y1="20" x2="270" y2="44" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="249" y="44" width="42" height="67" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="270" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+          <text x="270" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">3Ω</text>
+          <line x1="270" y1="111" x2="270" y2="155" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- R3 -->
+          <line x1="385" y1="20" x2="385" y2="44" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="364" y="44" width="42" height="67" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="385" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#4c1d95" text-anchor="middle">R₃</text>
+          <text x="385" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">9Ω</text>
+          <line x1="385" y1="111" x2="385" y2="155" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="170" y="12" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">R_eq=? | I_T=? | P_T=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 1.636 Ω | I_T = 11 A | P_T = 198 W</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 13</span>
+      <h4>Conductancia en serie</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Dos conductancias G₁ = 0.4 S y G₂ = 0.6 S están en serie conectadas a 100 V. Calcule la corriente total y la tensión en cada elemento.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 460 100" xmlns="http://www.w3.org/2000/svg" width="430" height="100">
+          <line x1="40" y1="28" x2="95" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <!-- G1 rombo -->
+          <polygon points="165,16 195,28 165,40 135,28" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></polygon>
+          <text x="165" y="32" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">G₁=0.4S</text>
+          <line x1="195" y1="28" x2="245" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <!-- G2 rombo -->
+          <polygon points="315,16 345,28 315,40 285,28" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></polygon>
+          <text x="315" y="32" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">G₂=0.6S</text>
+          <line x1="345" y1="28" x2="420" y2="28" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="420" y1="28" x2="420" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="82" x2="420" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="28" x2="40" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="40" cy="55" rx="16" ry="16" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="33" y="51" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="33" y="63" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="5" y="58" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">100V</text>
+          <text x="120" y="15" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I=?</text>
+          <text x="130" y="58" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">V₁=?</text>
+          <text x="258" y="58" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">V₂=?</text>
+          <text x="250" y="14" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6b7280">◇ = conductancia</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">I = 24 A | V₁ = 60 V | V₂ = 40 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 14</span>
+      <h4>Divisor de tensión — tres resistencias</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Un divisor con R₁ = 15 kΩ, R₂ = 5 kΩ, R₃ = 5 kΩ alimentado con 50 V. Calcule la tensión en cada resistencia.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 360 175" xmlns="http://www.w3.org/2000/svg" width="340" height="175">
+          <ellipse cx="40" cy="87" rx="16" ry="16" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="33" y="83" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="33" y="95" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="5" y="90" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">50V</text>
+          <line x1="40" y1="71" x2="40" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="18" x2="160" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 -->
+          <rect x="148" y="18" width="24" height="44" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="183" y="32" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db">R₁</text>
+          <text x="183" y="44" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db">15kΩ</text>
+          <text x="183" y="56" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V₁=?</text>
+          <!-- nodo 1 -->
+          <circle cx="160" cy="62" r="3.5" fill="#1a56db"></circle>
+          <!-- R2 -->
+          <line x1="160" y1="62" x2="160" y2="82" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="148" y="82" width="24" height="36" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="183" y="96" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46">R₂</text>
+          <text x="183" y="108" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46">5kΩ</text>
+          <text x="183" y="120" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V₂=?</text>
+          <!-- nodo 2 -->
+          <circle cx="160" cy="118" r="3.5" fill="#1a56db"></circle>
+          <!-- R3 -->
+          <line x1="160" y1="118" x2="160" y2="136" stroke="#1a56db" stroke-width="2"></line>
+          <rect x="148" y="136" width="24" height="28" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="183" y="148" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#4c1d95">R₃</text>
+          <text x="183" y="159" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95">5kΩ</text>
+          <line x1="160" y1="164" x2="160" y2="172" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="172" x2="160" y2="172" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="40" y1="103" x2="40" y2="172" stroke="#1a56db" stroke-width="2"></line>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">V₁ = 30 V | V₂ = 10 V | V₃ = 10 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num intermedio">EJ 15</span>
+      <h4>Circuito mixto con tres grupos</h4>
+    </div>
+    <div class="exercise-body">
+      <p>R₁ = 4 Ω en serie con R₂ = 6 Ω forman un grupo en paralelo con R₃ = 10 Ω. Todo el conjunto se conecta en serie con R₄ = 3 Ω a una fuente de 26 V. Calcule I_total y la tensión en R₃.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 510 145" xmlns="http://www.w3.org/2000/svg" width="490" height="145">
+          <!-- fuente -->
+          <ellipse cx="35" cy="72" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="28" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="28" y="80" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="4" y="75" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">26V</text>
+          <!-- conductor superior -->
+          <line x1="35" y1="54" x2="35" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="18" x2="100" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- conductor inferior global -->
+          <line x1="35" y1="90" x2="35" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="128" x2="475" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R4 serie en conductor superior -->
+          <rect x="100" y="7" width="70" height="22" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="2"></rect>
+          <text x="135" y="22" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#92400e" text-anchor="middle">R₄=3Ω</text>
+          <line x1="170" y1="18" x2="215" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- nodo izq del paralelo -->
+          <circle cx="215" cy="18" r="3.5" fill="#1a56db"></circle>
+          <!-- bus superior del paralelo -->
+          <line x1="215" y1="18" x2="475" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior del paralelo = conductor inferior global -->
+          <!-- rama R1+R2 en serie (vertical) -->
+          <line x1="280" y1="18" x2="280" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="262" y="40" width="36" height="26" rx="3" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="280" y="57" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=4Ω</text>
+          <line x1="280" y1="66" x2="280" y2="72" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="262" y="72" width="36" height="26" rx="3" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="280" y="89" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₂=6Ω</text>
+          <line x1="280" y1="98" x2="280" y2="128" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- rama R3 (vertical) -->
+          <line x1="405" y1="18" x2="405" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="384" y="40" width="42" height="60" rx="3" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="2"></rect>
+          <text x="405" y="68" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">R₃</text>
+          <text x="405" y="83" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">10Ω</text>
+          <line x1="405" y1="100" x2="405" y2="128" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- cierre derecha -->
+          <line x1="475" y1="18" x2="475" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <!-- labels -->
+          <text x="108" y="13" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I_T=?</text>
+          <text x="434" y="73" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">V₃=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 8 Ω | I_T = 3.25 A | V_{R3} = 16.25 V</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num avanzado">EJ 16</span>
+      <h4>Circuito mixto — dos ramas paralelas con resistencias en serie</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una fuente de 60 V alimenta dos ramas en paralelo: la rama 1 tiene R₁ = 10 Ω en serie con R₂ = 5 Ω; la rama 2 tiene R₃ = 9 Ω en serie con R₄ = 6 Ω. Calcule la corriente total, la corriente en cada rama y la potencia disipada en R₂.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 490 155" xmlns="http://www.w3.org/2000/svg" width="470" height="155">
+          <!-- bus superior nodo A -->
+          <line x1="55" y1="18" x2="460" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior nodo B -->
+          <line x1="55" y1="140" x2="460" y2="140" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente izquierda -->
+          <line x1="55" y1="18" x2="55" y2="64" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="55" cy="79" rx="17" ry="17" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="48" y="75" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="48" y="87" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="6" y="82" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">60V</text>
+          <line x1="55" y1="96" x2="55" y2="140" stroke="#1a56db" stroke-width="2"></line>
+          <!-- rama 1: R1 + R2 en serie, vertical -->
+          <line x1="200" y1="18" x2="200" y2="38" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="180" y="38" width="40" height="28" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="200" y="56" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=10Ω</text>
+          <line x1="200" y1="66" x2="200" y2="76" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="180" y="76" width="40" height="28" rx="4" fill="#fef9c3" stroke="#d97706" stroke-width="1.5"></rect>
+          <text x="200" y="94" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#92400e" text-anchor="middle">R₂=5Ω</text>
+          <line x1="200" y1="104" x2="200" y2="140" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="228" y="79" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₁=?</text>
+          <!-- rama 2: R3 + R4 en serie, vertical -->
+          <line x1="370" y1="18" x2="370" y2="38" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="350" y="38" width="40" height="28" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="370" y="56" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₃=9Ω</text>
+          <line x1="370" y1="66" x2="370" y2="76" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="350" y="76" width="40" height="28" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="370" y="94" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#4c1d95" text-anchor="middle">R₄=6Ω</text>
+          <line x1="370" y1="104" x2="370" y2="140" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="398" y="79" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂=?</text>
+          <!-- cierre derecha -->
+          <line x1="460" y1="18" x2="460" y2="140" stroke="#1a56db" stroke-width="2"></line>
+          <text x="90" y="12" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I_T=?</text>
+          <text x="178" y="105" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">P_{R2}=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 9 Ω | I_T = 6.67 A | I₁ = 4 A | I₂ = 4 A | P_{R2} = 80 W</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num avanzado">EJ 17</span>
+      <h4>Máxima transferencia de potencia</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una fuente de 45 V alimenta un circuito con R₁ = 3 Ω en serie con el paralelo de R₂ = 12 Ω y R₃ = 6 Ω. Calcule la resistencia equivalente total, la corriente que entrega la fuente, y la tensión en el paralelo.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 490 145" xmlns="http://www.w3.org/2000/svg" width="470" height="145">
+          <!-- fuente -->
+          <ellipse cx="35" cy="72" rx="18" ry="18" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="28" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="28" y="80" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="4" y="75" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">45V</text>
+          <line x1="35" y1="54" x2="35" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="18" x2="100" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="90" x2="35" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="128" x2="465" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 en serie -->
+          <rect x="100" y="7" width="75" height="22" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="137" y="22" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=3Ω</text>
+          <line x1="175" y1="18" x2="220" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- nodo paralelo izq -->
+          <circle cx="220" cy="18" r="3.5" fill="#1a56db"></circle>
+          <!-- bus superior paralelo -->
+          <line x1="220" y1="18" x2="465" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- cierre der -->
+          <line x1="465" y1="18" x2="465" y2="128" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R2 rama vertical -->
+          <line x1="310" y1="18" x2="310" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="289" y="40" width="42" height="50" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="310" y="64" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">R₂</text>
+          <text x="310" y="78" font-family="IBM Plex Mono,monospace" font-size="10" fill="#065f46" text-anchor="middle">12Ω</text>
+          <line x1="310" y1="90" x2="310" y2="128" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="340" y="72" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂=?</text>
+          <!-- R3 rama vertical -->
+          <line x1="415" y1="18" x2="415" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="394" y="40" width="42" height="50" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="415" y="64" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#4c1d95" text-anchor="middle">R₃</text>
+          <text x="415" y="78" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">6Ω</text>
+          <line x1="415" y1="90" x2="415" y2="128" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="240" y="75" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V_par=?</text>
+          <text x="108" y="12" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I_T=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 7 Ω | I_T = 6.43 A | V_par = 25.71 V | I₂ = 2.14 A | I₃ = 4.29 A</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num avanzado">EJ 18</span>
+      <h4>Red escalera resistiva</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Calcule la resistencia equivalente vista desde los terminales A-B de la red escalera: R₁ = 6 Ω en serie con el paralelo de [R₂ = 12 Ω en serie con (R₃ = 4 Ω ∥ R₄ = 4 Ω)] y R₅ = 6 Ω.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 520 165" xmlns="http://www.w3.org/2000/svg" width="500" height="165">
+          <!-- terminales A-B izquierda -->
+          <circle cx="30" cy="18" r="5" fill="white" stroke="#d97706" stroke-width="2.5"></circle>
+          <circle cx="30" cy="148" r="5" fill="white" stroke="#d97706" stroke-width="2.5"></circle>
+          <text x="6" y="22" font-family="DM Sans,sans-serif" font-size="13" fill="#d97706" font-weight="700">A</text>
+          <text x="6" y="152" font-family="DM Sans,sans-serif" font-size="13" fill="#d97706" font-weight="700">B</text>
+          <!-- bus superior -->
+          <line x1="30" y1="18" x2="490" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior -->
+          <line x1="30" y1="148" x2="490" y2="148" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 en serie (horizontal, superior) -->
+          <rect x="50" y="7" width="75" height="22" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="87" y="22" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1a56db" text-anchor="middle">R₁=6Ω</text>
+          <!-- nodo central -->
+          <circle cx="165" cy="18" r="3.5" fill="#1a56db"></circle>
+          <!-- bus paralelo superior -->
+          <line x1="165" y1="18" x2="490" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- cierre derecho -->
+          <line x1="490" y1="18" x2="490" y2="148" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R5 rama derecha vertical -->
+          <line x1="460" y1="18" x2="460" y2="45" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="441" y="45" width="38" height="58" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"></rect>
+          <text x="460" y="72" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#92400e" text-anchor="middle">R₅</text>
+          <text x="460" y="86" font-family="IBM Plex Mono,monospace" font-size="10" fill="#92400e" text-anchor="middle">6Ω</text>
+          <line x1="460" y1="103" x2="460" y2="148" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- rama R2 + (R3//R4) vertical izquierda del paralelo -->
+          <line x1="240" y1="18" x2="240" y2="42" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="220" y="42" width="40" height="26" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="240" y="59" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₂=12Ω</text>
+          <line x1="240" y1="68" x2="240" y2="80" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- nodo intermedio R3//R4 -->
+          <circle cx="240" cy="80" r="3" fill="#1a56db"></circle>
+          <!-- bus interno R3//R4 sup -->
+          <line x1="240" y1="80" x2="360" y2="80" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- bus interno R3//R4 inf -->
+          <line x1="240" y1="120" x2="360" y2="120" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- cierre interno der -->
+          <line x1="360" y1="80" x2="360" y2="120" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- R3 -->
+          <line x1="278" y1="80" x2="278" y2="90" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="261" y="90" width="34" height="20" rx="3" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="278" y="104" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₃=4Ω</text>
+          <line x1="278" y1="110" x2="278" y2="120" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- R4 -->
+          <line x1="328" y1="80" x2="328" y2="90" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="311" y="90" width="34" height="20" rx="3" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="328" y="104" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#4c1d95" text-anchor="middle">R₄=4Ω</text>
+          <line x1="328" y1="110" x2="328" y2="120" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- bajada de 240 a bus inferior -->
+          <line x1="240" y1="120" x2="240" y2="148" stroke="#1a56db" stroke-width="1.5"></line>
+          <!-- bajada de 360 a bus inferior -->
+          <line x1="360" y1="120" x2="360" y2="148" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="170" y="88" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">R_eq=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 9 Ω</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num avanzado">EJ 19</span>
+      <h4>Análisis con conductancias — red paralela compleja</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Una red tiene tres ramas en paralelo alimentadas por I_T = 10 A: rama 1 con G₁ = 0.2 S, rama 2 con R₂ = 5 Ω en serie con R₃ = 5 Ω, y rama 3 con R₄ = 2.5 Ω. Calcule la tensión en los nodos y la corriente por cada rama.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 490 175" xmlns="http://www.w3.org/2000/svg" width="470" height="175">
+          <!-- bus superior nodo A -->
+          <line x1="55" y1="18" x2="455" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- bus inferior nodo B -->
+          <line x1="55" y1="158" x2="455" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <!-- fuente corriente izquierda -->
+          <line x1="55" y1="18" x2="55" y2="66" stroke="#1a56db" stroke-width="2"></line>
+          <ellipse cx="55" cy="88" rx="22" ry="22" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <line x1="55" y1="73" x2="55" y2="77" stroke="#1a56db" stroke-width="1.5"></line>
+          <line x1="44" y1="88" x2="66" y2="88" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="55,79 49,88 61,88" fill="#1a56db"></polygon>
+          <line x1="55" y1="110" x2="55" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <text x="3" y="85" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db" font-weight="500">I_T</text>
+          <text x="3" y="97" font-family="DM Sans,sans-serif" font-size="10" fill="#1a56db" font-weight="500">=10A</text>
+          <!-- cierre derecho -->
+          <line x1="455" y1="18" x2="455" y2="158" stroke="#1a56db" stroke-width="2"></line>
+          <!-- rama G1 (rombo de bus a bus) -->
+          <line x1="150" y1="18" x2="150" y2="48" stroke="#1a56db" stroke-width="1.5"></line>
+          <polygon points="150,48 180,88 150,128 120,88" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></polygon>
+          <text x="150" y="83" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">G₁</text>
+          <text x="150" y="97" font-family="IBM Plex Mono,monospace" font-size="10" fill="#1a56db" text-anchor="middle">0.2S</text>
+          <line x1="150" y1="128" x2="150" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="190" y="92" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₁=?</text>
+          <!-- rama R2+R3 en serie vertical -->
+          <line x1="285" y1="18" x2="285" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="265" y="40" width="40" height="32" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="285" y="60" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₂=5Ω</text>
+          <line x1="285" y1="72" x2="285" y2="82" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="265" y="82" width="40" height="32" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="285" y="102" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₃=5Ω</text>
+          <line x1="285" y1="114" x2="285" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="315" y="92" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂=?</text>
+          <!-- rama R4 vertical -->
+          <line x1="400" y1="18" x2="400" y2="48" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="380" y="48" width="40" height="62" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="400" y="76" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#4c1d95" text-anchor="middle">R₄</text>
+          <text x="400" y="91" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">2.5Ω</text>
+          <line x1="400" y1="110" x2="400" y2="158" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="428" y="92" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₃=?</text>
+          <text x="90" y="12" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6b7280">◇ = conductancia</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">G_eq = 0.6 S | V = 16.67 V | I₁ = 3.33 A | I₂ = 1.67 A | I₃ = 6.67 A</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num avanzado">EJ 20</span>
+      <h4>Circuito completo — análisis integral</h4>
+    </div>
+    <div class="exercise-body">
+      <p>Fuente de 36 V, R₁ = 3 Ω en serie con el paralelo de la rama A [R₂ = 12 Ω en serie con R₃ = 6 Ω] y la rama B [R₄ = 6 Ω]. Calcule: (a) R_eq total, (b) corriente de la fuente, (c) tensión en el paralelo, (d) corrientes I₂ y I₄, y (e) potencia disipada en R₃.</p>
+      <div class="circuit-ej">
+        <svg viewBox="0 0 530 155" xmlns="http://www.w3.org/2000/svg" width="510" height="155">
+          <!-- fuente -->
+          <ellipse cx="35" cy="77" rx="19" ry="19" fill="white" stroke="#1a56db" stroke-width="2"></ellipse>
+          <text x="28" y="73" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">+</text>
+          <text x="28" y="85" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1a56db" font-weight="600">−</text>
+          <text x="3" y="80" font-family="DM Sans,sans-serif" font-size="11" fill="#1a56db" font-weight="500">36V</text>
+          <line x1="35" y1="58" x2="35" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="18" x2="100" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="96" x2="35" y2="138" stroke="#1a56db" stroke-width="2"></line>
+          <line x1="35" y1="138" x2="495" y2="138" stroke="#1a56db" stroke-width="2"></line>
+          <!-- R1 serie horizontal -->
+          <rect x="100" y="7" width="75" height="22" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="2"></rect>
+          <text x="137" y="22" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#92400e" text-anchor="middle">R₁=3Ω</text>
+          <line x1="175" y1="18" x2="225" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- nodo paralelo izq -->
+          <circle cx="225" cy="18" r="3.5" fill="#1a56db"></circle>
+          <!-- bus paralelo superior -->
+          <line x1="225" y1="18" x2="495" y2="18" stroke="#1a56db" stroke-width="2"></line>
+          <!-- cierre derecho -->
+          <line x1="495" y1="18" x2="495" y2="138" stroke="#1a56db" stroke-width="2"></line>
+          <!-- Rama A: R2 + R3 en serie, vertical -->
+          <line x1="315" y1="18" x2="315" y2="40" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="294" y="40" width="42" height="30" rx="4" fill="#eff6ff" stroke="#1a56db" stroke-width="1.5"></rect>
+          <text x="315" y="59" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#1a56db" text-anchor="middle">R₂=12Ω</text>
+          <line x1="315" y1="70" x2="315" y2="80" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="294" y="80" width="42" height="30" rx="4" fill="#ecfdf5" stroke="#0e9f6e" stroke-width="1.5"></rect>
+          <text x="315" y="99" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#065f46" text-anchor="middle">R₃=6Ω</text>
+          <line x1="315" y1="110" x2="315" y2="138" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="346" y="78" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₂=?</text>
+          <text x="346" y="105" font-family="IBM Plex Mono,monospace" font-size="9" fill="#d97706">P_{R3}=?</text>
+          <!-- Rama B: R4 vertical -->
+          <line x1="435" y1="18" x2="435" y2="48" stroke="#1a56db" stroke-width="1.5"></line>
+          <rect x="414" y="48" width="42" height="42" rx="4" fill="#faf5ff" stroke="#7e3af2" stroke-width="1.5"></rect>
+          <text x="435" y="72" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#4c1d95" text-anchor="middle">R₄</text>
+          <text x="435" y="85" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4c1d95" text-anchor="middle">6Ω</text>
+          <line x1="435" y1="90" x2="435" y2="138" stroke="#1a56db" stroke-width="1.5"></line>
+          <text x="465" y="78" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→I₄=?</text>
+          <!-- label V_par -->
+          <text x="235" y="80" font-family="IBM Plex Mono,monospace" font-size="10" fill="#d97706">V_par=?</text>
+          <text x="108" y="12" font-family="DM Sans,sans-serif" font-size="10" fill="#0e9f6e">→ I_T=?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="only-result">
+      <span class="r-label">Resultado</span>
+      <span class="r-val">R_eq = 9 Ω | I_T = 4 A | V_par = 24 V | I₂ = 1.33 A | I₄ = 4 A | P_{R3} = 10.67 W</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 8. REFERENCIAS                             -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+  <div class="section-label">08 — Bibliografía</div>
+  <h2>Referencias bibliográficas</h2>
+  <ul class="ref-list">
+    <li>
+      <span class="ref-num">[1]</span>
+      <span>Nilsson, J. W. &amp; Riedel, S. A. <em>Electric Circuits</em>, 11ª ed., Pearson, 2019. Caps. 2–3: Resistive Circuits, Simple Resistive Circuits.</span>
+    </li>
+    <li>
+      <span class="ref-num">[2]</span>
+      <span>Alexander, C. K. &amp; Sadiku, M. N. O. <em>Fundamentals of Electric Circuits</em>, 7ª ed., McGraw-Hill, 2021. Cap. 2: Basic Laws.</span>
+    </li>
+    <li>
+      <span class="ref-num">[3]</span>
+      <span>Hayt, W. H., Kemmerly, J. E. &amp; Durbin, S. M. <em>Engineering Circuit Analysis</em>, 9ª ed., McGraw-Hill, 2019. Caps. 3–5.</span>
+    </li>
+    <li>
+      <span class="ref-num">[4]</span>
+      <span>Dorf, R. C. &amp; Svoboda, J. A. <em>Introduction to Electric Circuits</em>, 9ª ed., Wiley, 2014. Cap. 3: Resistive Circuits.</span>
+    </li>
+    <li>
+      <span class="ref-num">[5]</span>
+      <span>Boylestad, R. L. <em>Introductory Circuit Analysis</em>, 13ª ed., Pearson, 2016. Caps. 5–9: Series, Parallel and Series-Parallel Circuits.</span>
+    </li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  Ingeniería Civil Eléctrica · Circuitos Eléctricos I · Material de apoyo para estudiantes
+</footer>
+
+
+
+</body></html>
