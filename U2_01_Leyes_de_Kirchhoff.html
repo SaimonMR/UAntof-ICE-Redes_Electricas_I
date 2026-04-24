@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///C:/Users/Lenovo/Downloads/kirchhoff_completo_4.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leyes de Kirchhoff – Redes Eléctricas I</title>
+<link href="./U2_Leyes_de_Kirchhoff_files/css2" rel="stylesheet">
+<style>
+:root {
+  --navy:   #1a2744;
+  --blue:   #1565c0;
+  --lblue:  #eef4ff;
+  --mblue:  #b3d1f7;
+  --gold:   #c07800;
+  --lgold:  #fff8e1;
+  --dgold:  #7b5800;
+  --green:  #166534;
+  --lgreen: #e8f5e9;
+  --purple: #6d28d9;
+  --lpurple:#f3eeff;
+  --red:    #c0392b;
+  --lred:   #ffebee;
+  --surf:   #f5f7fa;
+  --border: #d0d7e6;
+  --muted:  #5a6478;
+  --body:   #3a4255;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;color:#1a1f2e;font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,#1a2744 0%,#1565c0 65%,#1a3a6a 100%);border-bottom:4px solid var(--gold);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(255,200,80,.1) 0%,transparent 70%)}
+.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;background:rgba(255,200,80,.15);border:1px solid rgba(255,200,80,.4);color:#ffd060;padding:.2rem .7rem;border-radius:2px;margin-bottom:1rem;position:relative;z-index:1}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,6vw,3.4rem);color:#fff;line-height:1.1;position:relative;z-index:1}
+h1 span{color:#ffd060}
+.subtitle{margin-top:.6rem;color:rgba(255,255,255,.75);font-size:.95rem;font-style:italic;position:relative;z-index:1}
+.authors{margin-top:.35rem;color:rgba(255,255,255,.6);font-size:.82rem;position:relative;z-index:1}
+
+/* ── LAYOUT ── */
+main{max-width:920px;margin:0 auto;padding:2rem 1.5rem 5rem}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.16em;color:var(--blue);text-transform:uppercase;margin-bottom:.3rem}
+h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.65rem;color:var(--navy);border-bottom:2px solid var(--border);padding-bottom:.35rem;margin-bottom:1rem}
+h3{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin:1.2rem 0 .4rem}
+section{margin-bottom:3rem}
+p{color:var(--body);margin-bottom:.75rem;font-size:.95rem}
+.divider{height:1px;background:var(--border);margin:2.5rem 0}
+
+/* ── CONCEPT CARDS ── */
+.concepts-grid{display:grid;gap:.5rem;margin:.75rem 0}
+.nodo-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:8px;padding:.9rem 1rem}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.concept-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;position:relative}
+.concept-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:8px 8px 0 0}
+.c-rama::before{background:var(--blue)}
+.c-lazo::before{background:var(--green)}
+.c-malla::before{background:var(--purple)}
+.ct{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;letter-spacing:.08em;margin-bottom:.3rem}
+.c-nodo .ct,.nodo-card .ct{color:var(--gold)}
+.c-rama .ct{color:var(--blue)}
+.c-lazo .ct{color:var(--green)}
+.c-malla .ct{color:var(--purple)}
+.concept-card p,.nodo-card p{font-size:.88rem;color:var(--muted);margin:0}
+.nodo-inner{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.nodo-def p{font-size:.9rem;color:var(--body);margin:0}
+.nodo-types{font-size:.85rem}
+.nodo-types p{margin:.2rem 0;color:var(--body);font-size:.85rem}
+.sep{border:none;border-top:1px solid var(--border);margin:.5rem 0}
+
+/* ── EULER BOX ── */
+.euler-box{background:var(--lblue);border:1.5px solid var(--blue);border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:.5rem 0}
+.euler-text{font-size:.88rem;color:var(--body)}
+.euler-text strong{color:var(--blue);display:block;margin-bottom:.2rem}
+.euler-formula{font-family:'IBM Plex Mono',monospace;font-size:1.35rem;font-weight:700;color:var(--blue);white-space:nowrap}
+.euler-note{font-size:.78rem;color:var(--muted);font-family:'IBM Plex Mono',monospace}
+
+/* ── NOTE BOXES (3 col) ── */
+.notes-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.5rem 0}
+.notebox{border-radius:4px;padding:.7rem .85rem;font-size:.83rem;color:var(--body)}
+.notebox strong{display:block;margin-bottom:.2rem}
+.nb-gold{background:#fffbf0;border:1px solid var(--border);border-left:3px solid var(--gold)}
+.nb-gold strong{color:var(--gold)}
+.nb-blue{background:#f0f6ff;border:1px solid var(--border);border-left:3px solid var(--blue)}
+.nb-blue strong{color:var(--blue)}
+.nb-green{background:#f0faf2;border:1px solid var(--border);border-left:3px solid var(--green)}
+.nb-green strong{color:var(--green)}
+
+/* ── LAW BOX ── */
+.law-box{border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:.8rem 0}
+.law-kcl{background:#f0f6ff;border-left:4px solid var(--blue)}
+.law-kvl{background:var(--lpurple);border-left:4px solid var(--purple)}
+.law-title{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;margin-bottom:.3rem}
+.law-kcl .law-title{color:var(--blue)}
+.law-kvl .law-title{color:var(--purple)}
+.law-box p{color:var(--navy);font-style:italic;margin:0;font-size:.93rem}
+
+/* ── FORMULA BOX ── */
+.formula-box{border-radius:6px;padding:.75rem 1rem;font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:700;text-align:center;margin:.6rem 0;letter-spacing:.03em}
+.fb-blue{background:var(--lblue);border:1.5px solid var(--mblue);color:var(--blue)}
+.fb-purple{background:var(--lpurple);border:1.5px solid #c4b5fd;color:var(--purple)}
+
+/* ── SIGN TABLE ── */
+.sign-table{width:100%;border-collapse:collapse;font-size:.87rem;margin:.6rem 0 .9rem}
+.sign-table th{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--muted);text-align:left;padding:.45rem .7rem;background:var(--surf);border-bottom:1px solid var(--border)}
+.sign-table td{padding:.45rem .7rem;border-bottom:1px solid var(--border);color:var(--body)}
+.sign-table tr:last-child td{border-bottom:none}
+.tag-pos{background:var(--lgreen);color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:700;padding:.1rem .4rem;border-radius:3px}
+.tag-neg{background:var(--lred);color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:700;padding:.1rem .4rem;border-radius:3px}
+
+/* ── TIP BOX ── */
+.tip{display:flex;gap:.7rem;background:var(--lpurple);border:1px solid #c4b5fd;border-radius:6px;padding:.8rem 1rem;margin:.6rem 0;font-size:.87rem}
+.tip-icon{flex-shrink:0;font-size:1rem;margin-top:.05rem}
+.tip p{margin:0;color:#4a2080}
+.tip-green{background:var(--lgreen);border-color:#86efac}
+.tip-green p{color:var(--green)}
+.tip-red{background:var(--lred);border-color:#fca5a5}
+.tip-red p{color:var(--red)}
+
+/* ── EXERCISES ── */
+.exercise{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:1.2rem;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.ex-header{background:var(--navy);padding:.75rem 1.2rem;display:flex;align-items:center;gap:.7rem}
+.ex-num{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:#ffd060;background:rgba(255,208,96,.15);border:1px solid rgba(255,208,96,.3);padding:.15rem .55rem;border-radius:2px}
+.ex-header h4{font-family:'Fraunces',serif;font-size:.98rem;font-weight:700;color:#fff}
+.ex-body{padding:1.1rem 1.3rem}
+.ex-body>p{font-size:.92rem;margin-bottom:.7rem}
+.sec-header{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;padding:.5rem 0;margin:1.5rem 0 .5rem;border-bottom:1px solid var(--border)}
+.sec-header.blue{color:var(--blue);border-color:var(--blue)}
+.sec-header.purple{color:var(--purple);border-color:var(--purple)}
+
+/* ── STEPS ── */
+.step{background:var(--lblue);border-left:3px solid var(--mblue);border-radius:0 4px 4px 0;padding:.55rem .9rem;margin-bottom:.4rem;font-size:.87rem;color:var(--body)}
+.step strong{color:var(--blue)}
+
+/* ── RESULT BOX ── */
+.result{background:var(--lgold);border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:4px;padding:.6rem 1rem;margin-top:.6rem;font-size:.9rem;font-weight:700;color:var(--dgold)}
+.result small{display:block;font-weight:400;font-size:.8rem;color:#9a6800;margin-top:.2rem}
+
+/* ── CIRCUIT SVG BOX ── */
+.circuit-box{background:#f2f6fc;border:1px solid var(--border);border-radius:8px;padding:1rem;margin:.75rem 0;text-align:center}
+.circuit-box figcaption{font-size:.75rem;color:var(--muted);margin-top:.5rem;font-family:'IBM Plex Mono',monospace}
+
+/* ── SUMMARY TABLE ── */
+.sum-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.sum-table th{background:var(--navy);color:#fff;padding:.55rem .8rem;text-align:left;font-size:.82rem}
+.sum-table td{padding:.55rem .8rem;border-bottom:1px solid var(--border)}
+.sum-table tr:nth-child(1) td{background:var(--lblue)}
+.sum-table tr:nth-child(2) td{background:var(--lpurple)}
+
+/* ── REFERENCES ── */
+.ref-list{list-style:none;counter-reset:refs}
+.ref-list li{counter-increment:refs;display:flex;gap:.7rem;margin-bottom:.7rem;font-size:.87rem;color:var(--muted)}
+.ref-list li::before{content:'[' counter(refs) ']';font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--blue);flex-shrink:0;padding-top:.05rem}
+
+/* ── CIRCUIT DIAGRAMS common SVG styles ── */
+.wire{stroke:#1565c0;stroke-width:2.2;fill:none}
+.res{stroke:#c07800;stroke-width:2.2;fill:none}
+.src{stroke:#6d28d9;stroke-width:2;fill:#fff}
+.src-i{stroke:#166534;stroke-width:2;fill:#fff}
+.npt{fill:#1565c0}
+.nlbl{font-family:monospace;font-size:11px;font-weight:bold;fill:#1a2744}
+.rlbl{font-family:monospace;font-size:10px;fill:#c07800}
+.mlbl{font-family:monospace;font-size:10px;fill:#c0392b}
+.ilbl-in{font-family:monospace;font-size:10px;fill:#166534}
+.ilbl-out{font-family:monospace;font-size:10px;fill:#c0392b}
+
+@media(max-width:600px){
+  .three-col,.notes-row{grid-template-columns:1fr 1fr}
+  .nodo-inner{grid-template-columns:1fr}
+  .euler-box{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">REDES ELÉCTRICAS I — INGENIERÍA CIVIL ELÉCTRICA</div>
+  <h1>Leyes de <span>Kirchhoff</span></h1>
+  <p class="subtitle">Guía didáctica · Conceptos fundamentales, Topología y Leyes de Kirchhoff</p>
+  <p class="authors">Prof. Marcelo Cortés Carmona &nbsp;·&nbsp; Prof. Simón Martínez Rozas</p>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 01 — TOPOLOGÍA                         -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">01 — Topología de circuitos</div>
+  <h2>Nodo, Rama, Lazo y Malla</h2>
+  <p>Antes de enunciar las leyes de Kirchhoff es imprescindible dominar el vocabulario topológico de un circuito eléctrico. Estos conceptos permiten identificar con precisión cada elemento y cada camino del circuito.</p>
+
+  <div class="concepts-grid">
+    <!-- NODO full width -->
+    <div class="nodo-card">
+      <div class="ct" style="color:var(--gold)">NODO</div>
+      <div class="nodo-inner">
+        <div class="nodo-def"><p>Punto de unión donde se conectan <strong>dos o más</strong> elementos de circuito. Es el lugar físico donde confluyen las corrientes.</p></div>
+        <div class="nodo-types">
+          <p><strong style="color:var(--gold)">Nodo simple:</strong> une exactamente dos elementos; la corriente no se divide.</p>
+          <p style="margin-top:.3rem"><strong style="color:var(--blue)">Nodo principal:</strong> une tres o más elementos; es donde la corriente se ramifica. Aquí se aplica la LCK.</p>
+        </div>
+      </div>
+    </div>
+    <!-- RAMA | LAZO | MALLA -->
+    <div class="three-col">
+      <div class="concept-card c-rama"><div class="ct">RAMA</div><p>Trayecto que conecta dos nodos y contiene un único elemento (resistencia, fuente, inductor, etc.).</p></div>
+      <div class="concept-card c-lazo"><div class="ct">LAZO</div><p>Cualquier trayectoria <strong>cerrada</strong> dentro del circuito, que no necesariamente sigue el contorno mínimo.</p></div>
+      <div class="concept-card c-malla"><div class="ct">MALLA</div><p>Lazo cerrado <strong>mínimo</strong>: no contiene otros lazos en su interior. Base del Análisis de Mallas.</p></div>
+    </div>
+  </div>
+
+  <!-- Euler -->
+  <div class="euler-box">
+    <div class="euler-text"><strong>Fórmula de Euler para circuitos planos</strong>Para un circuito con <em>b</em> ramas, <em>n</em> nodos y <em>m</em> mallas independientes:</div>
+    <div style="text-align:center"><div class="euler-formula">m = b − n + 1</div><div class="euler-note">Ej.: 7 − 6 + 1 = <strong>2</strong> mallas</div></div>
+  </div>
+
+  <!-- Notes row -->
+  <div class="notes-row">
+    <div class="notebox nb-gold"><strong>Nodo y cortocircuito</strong>Un alambre entre dos nodos los convierte en <strong>un único nodo</strong>: mismo potencial en ambos extremos.</div>
+    <div class="notebox nb-blue"><strong>Elementos en serie</strong>Conectados en cadena terminal con terminal. Comparten un <strong>nodo exclusivo</strong>; misma corriente por todos.</div>
+    <div class="notebox nb-green"><strong>Elementos en paralelo</strong>Conectados al <strong>mismo par de terminales</strong>. Misma tensión en sus extremos, sin importar su corriente.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 01b — EJERCICIOS TOPOLOGÍA            -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">01b — Ejercicios de identificación topológica</div>
+  <h2>Circuitos resueltos paso a paso</h2>
+  <p>Seis circuitos de complejidad creciente. Para cada uno se identifican todos los elementos topológicos y se verifica la fórmula de Euler.</p>
+  <div class="tip"><div class="tip-icon">📋</div><p><strong>Método sistemático:</strong> (1) Marque puntos de unión → nodos. (2) Cuente elementos entre nodos → ramas. (3) Aplique m = b−n+1 → mallas. (4) Liste lazos cerrados posibles.</p></div>
+
+  <!-- EJEMPLO 01 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJEMPLO 01</span><h4>Circuito serie simple — una fuente, tres resistencias</h4></div>
+    <div class="ex-body">
+      <p>Circuito formado por V<sub>s</sub> = 12 V, R₁ = 2 Ω, R₂ = 4 Ω y R₃ = 6 Ω en serie, formando un único lazo.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 340 160" width="100%" style="max-width:340px">
+          <rect width="340" height="160" fill="#f2f6fc" rx="6"></rect>
+          <line x1="50" y1="40" x2="290" y2="40" class="wire"></line>
+          <line x1="290" y1="40" x2="290" y2="120" class="wire"></line>
+          <line x1="50" y1="120" x2="290" y2="120" class="wire"></line>
+          <line x1="50" y1="40" x2="50" y2="73" class="wire"></line>
+          <circle cx="50" cy="88" r="14" class="src"></circle>
+          <text x="50" y="85" text-anchor="middle" font-size="9" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="50" y="96" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">12V</text>
+          <line x1="50" y1="102" x2="50" y2="120" class="wire"></line>
+          <polyline points="88,40 94,31 100,49 106,31 112,49 118,31 124,40" class="res"></polyline>
+          <text x="106" y="27" text-anchor="middle" class="rlbl">R₁=2Ω</text>
+          <polyline points="158,40 164,31 170,49 176,31 182,49 188,31 194,40" class="res"></polyline>
+          <text x="176" y="27" text-anchor="middle" class="rlbl">R₂=4Ω</text>
+          <polyline points="290,65 280,72 300,78 280,84 300,90 280,96 290,103" class="res"></polyline>
+          <text x="308" y="86" class="rlbl">R₃=6Ω</text>
+          <circle cx="50" cy="40" r="4.5" class="npt"></circle><text x="36" y="37" class="nlbl">a</text>
+          <circle cx="290" cy="40" r="4.5" class="npt"></circle><text x="294" y="37" class="nlbl">b</text>
+          <circle cx="50" cy="120" r="4.5" class="npt"></circle><text x="36" y="132" class="nlbl">c</text>
+          <circle cx="290" cy="120" r="4.5" class="npt"></circle><text x="294" y="132" class="nlbl">d</text>
+          <text x="170" y="100" text-anchor="middle" class="mlbl">M₁</text>
+        </svg>
+        <figcaption>Fig. E1 — Circuito serie: 4 nodos, 4 ramas, 1 malla</figcaption>
+      </div>
+      <strong style="color:var(--blue);font-size:.88rem">Solución paso a paso:</strong>
+      <div class="step" style="margin-top:.5rem"><strong>Paso 1 — Identificar nodos:</strong> Puntos de unión: a, b, c, d → <strong>n = 4 nodos</strong> (todos simples, ninguno esencial)</div>
+      <div class="step"><strong>Paso 2 — Identificar ramas:</strong> Vs(a→c), R₁(a→punto), R₂(punto→b), R₃(b→d) → <strong>b = 4 ramas</strong></div>
+      <div class="step"><strong>Paso 3 — Euler:</strong> m = 4 − 4 + 1 = <strong>1 malla independiente</strong></div>
+      <div class="step"><strong>Paso 4 — Lazos:</strong> Un único lazo que recorre todos los elementos. Ese lazo = malla M₁. → <strong>1 lazo = 1 malla</strong></div>
+      <div class="result">✓ Resumen: n = 4 · b = 4 · 1 lazo · m = 1 malla<small>Verificación: 4−4+1=1 ✓ La corriente i circula por todos los elementos en serie.</small></div>
+    </div>
+  </div>
+
+  <!-- EJEMPLO 02 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJEMPLO 02</span><h4>Circuito con dos mallas rectangulares</h4></div>
+    <div class="ex-body">
+      <p>Circuito con Vs = 15 V, R₁, R₂, R₃ y R₄. La resistencia R₃ es la <strong>rama central compartida</strong> entre ambas mallas.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 360 170" width="100%" style="max-width:360px">
+          <rect width="360" height="170" fill="#f2f6fc" rx="6"></rect>
+          <line x1="35" y1="35" x2="180" y2="35" class="wire"></line>
+          <line x1="180" y1="35" x2="325" y2="35" class="wire"></line>
+          <line x1="35" y1="35" x2="35" y2="130" class="wire"></line>
+          <line x1="180" y1="35" x2="180" y2="130" class="wire"></line>
+          <line x1="325" y1="35" x2="325" y2="130" class="wire"></line>
+          <line x1="35" y1="130" x2="180" y2="130" class="wire"></line>
+          <line x1="180" y1="130" x2="325" y2="130" class="wire"></line>
+          <line x1="35" y1="35" x2="35" y2="62" class="wire"></line>
+          <circle cx="35" cy="78" r="14" class="src"></circle>
+          <text x="35" y="76" text-anchor="middle" font-size="9" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="35" y="86" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">15V</text>
+          <line x1="35" y1="92" x2="35" y2="130" class="wire"></line>
+          <polyline points="62,35 68,25 74,45 80,25 86,45 92,25 98,35" class="res"></polyline>
+          <text x="80" y="20" text-anchor="middle" class="rlbl">R₁</text>
+          <polyline points="208,35 214,25 220,45 226,25 232,45 238,25 244,35" class="res"></polyline>
+          <text x="226" y="20" text-anchor="middle" class="rlbl">R₂</text>
+          <polyline points="180,60 170,67 190,73 170,79 190,85 170,91 180,98" class="res"></polyline>
+          <text x="196" y="82" class="rlbl">R₃</text>
+          <polyline points="325,60 315,67 335,73 315,79 335,85 315,91 325,98" class="res"></polyline>
+          <text x="336" y="82" class="rlbl">R₄</text>
+          <circle cx="35" cy="35" r="4" class="npt"></circle><text x="22" y="32" class="nlbl">a</text>
+          <circle cx="180" cy="35" r="4" class="npt"></circle><text x="183" y="32" class="nlbl">b</text>
+          <circle cx="325" cy="35" r="4" class="npt"></circle><text x="329" y="32" class="nlbl">c</text>
+          <circle cx="35" cy="130" r="4" class="npt"></circle><text x="22" y="143" class="nlbl">d</text>
+          <circle cx="180" cy="130" r="4" class="npt"></circle><text x="183" y="143" class="nlbl">e</text>
+          <circle cx="325" cy="130" r="4" class="npt"></circle><text x="329" y="143" class="nlbl">f</text>
+          <text x="108" y="86" text-anchor="middle" class="mlbl">M₁</text>
+          <text x="252" y="86" text-anchor="middle" style="font-family:monospace;font-size:10px;fill:#166534">M₂</text>
+        </svg>
+        <figcaption>Fig. E2 — Dos mallas: 6 nodos, 7 ramas, 3 lazos, 2 mallas</figcaption>
+      </div>
+      <strong style="color:var(--blue);font-size:.88rem">Solución paso a paso:</strong>
+      <div class="step" style="margin-top:.5rem"><strong>Paso 1 — Nodos:</strong> a, b (principal: R₁,R₃,R₂), c, d, e (principal), f → <strong>n = 6 nodos</strong></div>
+      <div class="step"><strong>Paso 2 — Ramas:</strong> Vs(a→d), R₁(a→b), R₂(b→c), R₃(b→e), R₄(c→f), cable(d→e), cable(e→f) → <strong>b = 7 ramas</strong></div>
+      <div class="step"><strong>Paso 3 — Euler:</strong> m = 7 − 6 + 1 = <strong>2 mallas independientes</strong></div>
+      <div class="step"><strong>Paso 4 — Lazos:</strong> M₁ (izq., mínimo ✓), M₂ (der., mínimo ✓), L₃ (exterior: engloba M₁+M₂, NO es malla ✗) → <strong>3 lazos, 2 mallas</strong></div>
+      <div class="result">✓ Resumen: n = 6 · b = 7 · 3 lazos · m = 2 mallas<small>La clave: R₃ es la rama compartida. Sin R₃ sería un solo lazo.</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 02 — LCK                              -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">02 — Primera ley de Kirchhoff</div>
+  <h2>LCK — Ley de Corrientes de Kirchhoff</h2>
+  <div class="law-box law-kcl"><div class="law-title">▸ ENUNCIADO FORMAL</div><p>"La suma algebraica de todas las corrientes que confluyen en un nodo es igual a cero."</p></div>
+  <div class="formula-box fb-blue">∑ iₖ = 0 &nbsp;&nbsp; (en todo nodo)</div>
+  <p>Esta ley es consecuencia del principio de <strong>conservación de la carga eléctrica</strong>: la carga no se crea ni se destruye en un nodo.</p>
+  <h3>Convención de signos</h3>
+  <table class="sign-table">
+    <tbody><tr><th>Situación</th><th>Signo asignado</th></tr>
+    <tr><td>Corriente que <strong>entra</strong> al nodo</td><td><span class="tag-pos">+ (positivo)</span></td></tr>
+    <tr><td>Corriente que <strong>sale</strong> del nodo</td><td><span class="tag-neg">− (negativo)</span></td></tr>
+  </tbody></table>
+  <div class="tip tip-green"><div class="tip-icon">💡</div><p><strong>Forma equivalente:</strong> "La suma de corrientes que entran a un nodo es igual a la suma de corrientes que salen". Ambas formulaciones son equivalentes.</p></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 03 — LVK                              -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">03 — Segunda ley de Kirchhoff</div>
+  <h2>LVK — Ley de Voltajes de Kirchhoff</h2>
+  <div class="law-box law-kvl"><div class="law-title">▸ ENUNCIADO FORMAL</div><p>"La suma algebraica de todas las tensiones a lo largo de cualquier lazo cerrado es igual a cero."</p></div>
+  <div class="formula-box fb-purple">∑ vₖ = 0 &nbsp;&nbsp; (en todo lazo cerrado)</div>
+  <p>Consecuencia del principio de <strong>conservación de la energía</strong>: al recorrer un lazo cerrado y regresar al punto de partida, el trabajo neto es cero.</p>
+  <h3>Convención de signos (recorrido arbitrario)</h3>
+  <table class="sign-table">
+    <tbody><tr><th>Elemento encontrado al recorrer el lazo</th><th>Signo</th></tr>
+    <tr><td>Resistencia recorrida en el <strong>mismo sentido</strong> que la corriente asignada</td><td><span class="tag-neg">− iR</span></td></tr>
+    <tr><td>Resistencia recorrida en <strong>sentido contrario</strong> a la corriente</td><td><span class="tag-pos">+ iR</span></td></tr>
+    <tr><td>Fuente: se pasa de (−) a (+) en el sentido del recorrido</td><td><span class="tag-pos">+ V</span></td></tr>
+    <tr><td>Fuente: se pasa de (+) a (−) en el sentido del recorrido</td><td><span class="tag-neg">− V</span></td></tr>
+  </tbody></table>
+  <div class="tip tip-red"><div class="tip-icon">⚠️</div><p><strong>Importante:</strong> El sentido de recorrido (horario o antihorario) es <strong>arbitrario</strong>. Si la corriente resulta negativa, indica que fluye en sentido opuesto al asumido.</p></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 04 — 20 EJERCICIOS                    -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">04 — Ejercicios graduados</div>
+  <h2>20 Ejercicios de práctica</h2>
+  <p>Los ejercicios <strong>EJ 01</strong> y <strong>EJ 02</strong> incluyen procedimiento completo. Los ejercicios <strong>EJ 03 al EJ 20</strong> presentan enunciado completo con figura y solo el resultado final para desarrollo autónomo.</p>
+
+  <div class="sec-header blue">▸ EJERCICIOS CON PROCEDIMIENTO DETALLADO</div>
+
+  <!-- EJ 01 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 01</span><h4>Identificación topológica de un circuito</h4></div>
+    <div class="ex-body">
+      <p>Dado el circuito con 2 fuentes de tensión (V₁, V₂) y 5 resistencias (R₁…R₅), identifique: <strong>(a)</strong> número de nodos, <strong>(b)</strong> número de ramas, <strong>(c)</strong> mallas independientes.</p>
+      <div class="step"><strong>Paso 1</strong> — Nodos: a, b, c, d, e, f → n = 6</div>
+      <div class="step"><strong>Paso 2</strong> — Ramas: R₁(a→b), R₂(b→c), R₃(b→e), R₄(d→e), R₅(e→f), V₁(a→d), V₂(c→f) → b = 7</div>
+      <div class="step"><strong>Paso 3</strong> — Euler: m = 7 − 6 + 1 = <strong>2</strong></div>
+      <div class="result">✓ (a) n = 6 nodos &nbsp;|&nbsp; (b) b = 7 ramas &nbsp;|&nbsp; (c) m = 2 mallas</div>
+    </div>
+  </div>
+
+  <!-- EJ 02 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 02</span><h4>Aplicación de LCK — corriente desconocida en un nodo</h4></div>
+    <div class="ex-body">
+      <p>En el nodo B: i₁ = 8 A (entra), i₂ = 3 A (entra), i₃ = 5 A (sale), i₄ = 2 A (sale), i₅ = ? (sale). Determine i₅.</p>
+      <div class="step"><strong>Paso 1</strong> — LCK: ∑iₖ = 0</div>
+      <div class="step"><strong>Paso 2</strong> — Signos: +i₁ + i₂ − i₃ − i₄ − i₅ = 0</div>
+      <div class="step"><strong>Paso 3</strong> — Sustituir: +8 + 3 − 5 − 2 − i₅ = 0 → 11 − 7 − i₅ = 0</div>
+      <div class="step"><strong>Paso 4</strong> — Despejar: i₅ = 4 A &nbsp;&nbsp; Verificación: 8+3 = 5+2+4 → 11=11 ✓</div>
+      <div class="result">✓ i₅ = 4 A (sale del nodo B)</div>
+    </div>
+  </div>
+
+  <div class="sec-header purple" style="margin-top:1.5rem">▸ EJERCICIOS DE PRÁCTICA AUTÓNOMA — Solo resultado</div>
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">Resuelva cada ejercicio de forma autónoma. El resultado se entrega para autoevaluación.</p>
+
+  <!-- EJ 03 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 03</span><h4>LCK — Nodo con cuatro ramas</h4></div>
+    <div class="ex-body">
+      <p>En el nodo <strong>C</strong> confluyen las siguientes corrientes: i₁ = 6 A (entra), i₂ = 2 A (sale), i₃ = 4 A (entra). Aplique LCK para determinar <strong>i₄</strong>, indicando si entra o sale del nodo.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 280 200" width="100%" style="max-width:260px">
+          <rect width="280" height="200" fill="#f2f6fc" rx="6"></rect>
+          <circle cx="140" cy="100" r="8" fill="#1565c0"></circle>
+          <text x="140" y="90" text-anchor="middle" class="nlbl">C</text>
+          <line x1="50" y1="45" x2="132" y2="94" class="wire" stroke="#166534"></line>
+          <polygon points="132,94 122,86 128,80" fill="#166534"></polygon>
+          <text x="42" y="40" class="ilbl-in">i₁=6A →</text>
+          <line x1="230" y1="45" x2="148" y2="94" class="wire" stroke="#166534"></line>
+          <polygon points="148,94 158,86 152,80" fill="#166534"></polygon>
+          <text x="185" y="40" class="ilbl-in">← i₃=4A</text>
+          <line x1="132" y1="106" x2="50" y2="155" class="wire" stroke="#c0392b"></line>
+          <polygon points="50,155 62,147 56,160" fill="#c0392b"></polygon>
+          <text x="28" y="168" class="ilbl-out">i₂=2A ↙</text>
+          <line x1="148" y1="106" x2="230" y2="155" class="wire" stroke="#c0392b"></line>
+          <polygon points="230,155 218,147 224,160" fill="#c0392b"></polygon>
+          <text x="196" y="168" class="ilbl-out">↘ i₄=?</text>
+          <text x="140" y="185" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#5a6478">Verde=entra · Rojo=sale</text>
+        </svg>
+        <figcaption>Fig. EJ03 — Nodo C con cuatro corrientes</figcaption>
+      </div>
+      <div class="result">✓ i₄ = 8 A &nbsp;(sale del nodo C)</div>
+    </div>
+  </div>
+
+  <!-- EJ 04 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 04</span><h4>LVK — Circuito serie con una fuente y dos resistencias</h4></div>
+    <div class="ex-body">
+      <p>Un circuito serie está formado por Vs = 24 V, R₁ = 4 Ω y R₂ = 8 Ω. Asuma corriente de malla <em>i</em> en sentido horario y aplique LVK para calcular <strong>i</strong>, V<sub>R₁</sub> y V<sub>R₂</sub>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 300 155" width="100%" style="max-width:300px">
+          <rect width="300" height="155" fill="#f2f6fc" rx="6"></rect>
+          <line x1="45" y1="35" x2="255" y2="35" class="wire"></line>
+          <line x1="255" y1="35" x2="255" y2="120" class="wire"></line>
+          <line x1="45" y1="120" x2="255" y2="120" class="wire"></line>
+          <line x1="45" y1="35" x2="45" y2="65" class="wire"></line>
+          <circle cx="45" cy="80" r="14" class="src"></circle>
+          <text x="45" y="78" text-anchor="middle" font-size="9" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="45" y="88" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">24V</text>
+          <line x1="45" y1="94" x2="45" y2="120" class="wire"></line>
+          <polyline points="80,35 86,26 92,44 98,26 104,44 110,26 116,35" class="res"></polyline>
+          <text x="98" y="22" text-anchor="middle" class="rlbl">R₁=4Ω</text>
+          <polyline points="160,35 166,26 172,44 178,26 184,44 190,26 196,35" class="res"></polyline>
+          <text x="178" y="22" text-anchor="middle" class="rlbl">R₂=8Ω</text>
+          <polyline points="255,62 245,69 265,75 245,81 265,87 245,93 255,100" class="res"></polyline>
+          <circle cx="45" cy="35" r="4" class="npt"></circle>
+          <circle cx="255" cy="35" r="4" class="npt"></circle>
+          <circle cx="45" cy="120" r="4" class="npt"></circle>
+          <circle cx="255" cy="120" r="4" class="npt"></circle>
+          <polygon points="150,120 145,113 155,113" fill="#166534"></polygon>
+          <text x="150" y="142" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#166534">i ↻ horario</text>
+        </svg>
+        <figcaption>Fig. EJ04 — Circuito serie Vs + R₁ + R₂</figcaption>
+      </div>
+      <div class="result">✓ i = 2 A &nbsp;|&nbsp; V<sub>R₁</sub> = 8 V &nbsp;|&nbsp; V<sub>R₂</sub> = 16 V</div>
+    </div>
+  </div>
+
+  <!-- EJ 05 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 05</span><h4>LCK — Fuente de corriente con dos resistencias en paralelo</h4></div>
+    <div class="ex-body">
+      <p>Una fuente Is = 6 A alimenta el nodo <strong>P</strong>. Desde P salen dos ramas en paralelo hacia tierra: R₁ = 3 Ω y R₂ = 6 Ω. Aplique LCK para determinar V<sub>P</sub>, i<sub>R₁</sub> e i<sub>R₂</sub>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 300 175" width="100%" style="max-width:280px">
+          <rect width="300" height="175" fill="#f2f6fc" rx="6"></rect>
+          <!-- top node P -->
+          <circle cx="150" cy="55" r="6" fill="#1565c0"></circle>
+          <text x="155" y="50" class="nlbl">P</text>
+          <!-- source Is on left -->
+          <line x1="50" y1="55" x2="106" y2="55" class="wire"></line>
+          <circle cx="78" cy="55" r="15" class="src-i"></circle>
+          <text x="78" y="53" text-anchor="middle" font-size="9" font-family="monospace" fill="#166534">Is</text>
+          <text x="78" y="63" text-anchor="middle" font-size="8" font-family="monospace" fill="#166534">6A</text>
+          <polygon points="106,55 96,50 96,60" fill="#166534"></polygon>
+          <!-- R1 branch left -->
+          <line x1="110" y1="55" x2="110" y2="75" class="wire"></line>
+          <polyline points="110,75 100,82 120,88 100,94 120,100 100,106 110,113" class="res"></polyline>
+          <line x1="110" y1="113" x2="110" y2="145" class="wire"></line>
+          <text x="122" y="96" class="rlbl">R₁=3Ω</text>
+          <!-- R2 branch right -->
+          <line x1="190" y1="55" x2="190" y2="75" class="wire"></line>
+          <polyline points="190,75 180,82 200,88 180,94 200,100 180,106 190,113" class="res"></polyline>
+          <line x1="190" y1="113" x2="190" y2="145" class="wire"></line>
+          <text x="202" y="96" class="rlbl">R₂=6Ω</text>
+          <!-- ground wire -->
+          <line x1="110" y1="145" x2="190" y2="145" class="wire"></line>
+          <!-- wire from P to branches -->
+          <line x1="144" y1="55" x2="110" y2="55" class="wire"></line>
+          <line x1="156" y1="55" x2="190" y2="55" class="wire"></line>
+          <!-- ground symbol -->
+          <line x1="150" y1="145" x2="150" y2="157" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="138" y1="157" x2="162" y2="157" stroke="#5a6478" stroke-width="2.5"></line>
+          <line x1="142" y1="162" x2="158" y2="162" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="146" y1="167" x2="154" y2="167" stroke="#5a6478" stroke-width="1.5"></line>
+          <text x="150" y="22" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#5a6478">Is entra → se distribuye en R₁ y R₂</text>
+        </svg>
+        <figcaption>Fig. EJ05 — Fuente de corriente con paralelo</figcaption>
+      </div>
+      <div class="result">✓ V<sub>P</sub> = 12 V &nbsp;|&nbsp; i<sub>R₁</sub> = 4 A &nbsp;|&nbsp; i<sub>R₂</sub> = 2 A</div>
+    </div>
+  </div>
+
+  <!-- EJ 06 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 06</span><h4>LVK — Dos fuentes opuestas en una malla</h4></div>
+    <div class="ex-body">
+      <p>Una malla contiene: V₁ = 20 V (polo + a la izquierda), R = 5 Ω y V₂ = 8 V (polo + a la derecha, opuesta al sentido de recorrido horario). Aplique LVK para calcular la corriente <strong>i</strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 320 150" width="100%" style="max-width:300px">
+          <rect width="320" height="150" fill="#f2f6fc" rx="6"></rect>
+          <line x1="40" y1="35" x2="280" y2="35" class="wire"></line>
+          <line x1="280" y1="35" x2="280" y2="115" class="wire"></line>
+          <line x1="40" y1="115" x2="280" y2="115" class="wire"></line>
+          <line x1="40" y1="35" x2="40" y2="60" class="wire"></line>
+          <circle cx="40" cy="75" r="14" class="src"></circle>
+          <text x="40" y="72" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">V₁</text>
+          <text x="29" y="78" font-size="11" fill="#6d28d9">+</text>
+          <text x="29" y="68" font-size="11" fill="#6d28d9">−</text>
+          <text x="40" y="82" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">20V</text>
+          <line x1="40" y1="89" x2="40" y2="115" class="wire"></line>
+          <line x1="280" y1="35" x2="280" y2="60" class="wire"></line>
+          <circle cx="280" cy="75" r="14" class="src"></circle>
+          <text x="280" y="72" text-anchor="middle" font-size="8" font-family="monospace" fill="#c0392b">V₂</text>
+          <text x="291" y="68" font-size="11" fill="#c0392b">+</text>
+          <text x="291" y="78" font-size="11" fill="#c0392b">−</text>
+          <text x="280" y="82" text-anchor="middle" font-size="7" font-family="monospace" fill="#c0392b">8V</text>
+          <line x1="280" y1="89" x2="280" y2="115" class="wire"></line>
+          <polyline points="135,35 141,25 147,45 153,25 159,45 165,25 171,35" class="res"></polyline>
+          <text x="153" y="20" text-anchor="middle" class="rlbl">R=5Ω</text>
+          <polygon points="160,115 154,108 166,108" fill="#166534"></polygon>
+          <text x="160" y="135" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#166534">i ↻ horario</text>
+        </svg>
+        <figcaption>Fig. EJ06 — Dos fuentes opuestas, V₁ ayuda e i, V₂ se opone</figcaption>
+      </div>
+      <div class="result">✓ i = 2,4 A (en sentido horario)</div>
+    </div>
+  </div>
+
+  <!-- EJ 07 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 07</span><h4>Análisis de nodos — Dos nodos desconocidos</h4></div>
+    <div class="ex-body">
+      <p>Tres nodos: tierra (0 V), nodo V₁ y nodo V₂. Conductancias: G₁ = 0,5 S (V₁ a tierra), G₂ = 0,25 S (V₁ a V₂), G₃ = 0,5 S (V₂ a tierra). Fuentes: 3 A entra a V₁, 1 A entra a V₂. Calcule <strong>V₁</strong> y <strong>V₂</strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 320 175" width="100%" style="max-width:300px">
+          <rect width="320" height="175" fill="#f2f6fc" rx="6"></rect>
+          <!-- nodes -->
+          <circle cx="100" cy="60" r="6" fill="#1565c0"></circle>
+          <text x="100" y="48" text-anchor="middle" class="nlbl">V₁</text>
+          <circle cx="220" cy="60" r="6" fill="#1565c0"></circle>
+          <text x="220" y="48" text-anchor="middle" class="nlbl">V₂</text>
+          <!-- G1: V1 to ground -->
+          <line x1="100" y1="66" x2="100" y2="88" class="wire"></line>
+          <polyline points="100,88 90,95 110,101 90,107 110,113 90,119 100,126" class="res"></polyline>
+          <line x1="100" y1="126" x2="100" y2="148" class="wire"></line>
+          <text x="114" y="108" class="rlbl">G₁=0.5S</text>
+          <!-- G2: V1 to V2 -->
+          <line x1="106" y1="60" x2="150" y2="60" class="wire"></line>
+          <polyline points="150,60 156,50 162,70 168,50 174,70 180,50 186,60" class="res"></polyline>
+          <line x1="186" y1="60" x2="214" y2="60" class="wire"></line>
+          <text x="168" y="46" text-anchor="middle" class="rlbl">G₂=0.25S</text>
+          <!-- G3: V2 to ground -->
+          <line x1="220" y1="66" x2="220" y2="88" class="wire"></line>
+          <polyline points="220,88 210,95 230,101 210,107 230,113 210,119 220,126" class="res"></polyline>
+          <line x1="220" y1="126" x2="220" y2="148" class="wire"></line>
+          <text x="234" y="108" class="rlbl">G₃=0.5S</text>
+          <!-- ground bus -->
+          <line x1="60" y1="148" x2="260" y2="148" class="wire"></line>
+          <line x1="160" y1="148" x2="160" y2="158" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="148" y1="158" x2="172" y2="158" stroke="#5a6478" stroke-width="2.5"></line>
+          <line x1="152" y1="163" x2="168" y2="163" stroke="#5a6478" stroke-width="2"></line>
+          <!-- Is1: 3A into V1 -->
+          <line x1="60" y1="148" x2="60" y2="60" class="wire" stroke="#166534"></line>
+          <circle cx="60" cy="100" r="13" class="src-i"></circle>
+          <text x="60" y="98" text-anchor="middle" font-size="8" font-family="monospace" fill="#166534">3A</text>
+          <line x1="60" y1="60" x2="94" y2="60" class="wire" stroke="#166534"></line>
+          <polygon points="94,60 84,55 84,65" fill="#166534"></polygon>
+          <!-- Is2: 1A into V2 -->
+          <line x1="260" y1="148" x2="260" y2="60" class="wire" stroke="#166534"></line>
+          <circle cx="260" cy="100" r="13" class="src-i"></circle>
+          <text x="260" y="98" text-anchor="middle" font-size="8" font-family="monospace" fill="#166534">1A</text>
+          <line x1="260" y1="60" x2="226" y2="60" class="wire" stroke="#166534"></line>
+          <polygon points="226,60 236,55 236,65" fill="#166534"></polygon>
+        </svg>
+        <figcaption>Fig. EJ07 — Análisis nodal con G₁, G₂, G₃ y dos fuentes de corriente</figcaption>
+      </div>
+      <div class="result">✓ V₁ ≈ 4,57 V &nbsp;|&nbsp; V₂ ≈ 3,14 V</div>
+    </div>
+  </div>
+
+  <!-- EJ 08 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 08</span><h4>LCK — Verificación en circuito paralelo puro</h4></div>
+    <div class="ex-body">
+      <p>Una fuente Vs = 30 V alimenta tres resistencias en paralelo: R₁ = 5 Ω, R₂ = 10 Ω, R₃ = 15 Ω. Determine i₁, i₂, i₃ e i<sub>T</sub>. Verifique LCK en el nodo superior.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 340 175" width="100%" style="max-width:320px">
+          <rect width="340" height="175" fill="#f2f6fc" rx="6"></rect>
+          <!-- top bus -->
+          <line x1="30" y1="45" x2="310" y2="45" class="wire"></line>
+          <!-- bottom bus -->
+          <line x1="30" y1="145" x2="310" y2="145" class="wire"></line>
+          <!-- Vs on left -->
+          <line x1="30" y1="45" x2="30" y2="73" class="wire"></line>
+          <circle cx="30" cy="88" r="14" class="src"></circle>
+          <text x="30" y="86" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="18" y="86" font-size="11" fill="#6d28d9">+</text>
+          <text x="30" y="96" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">30V</text>
+          <line x1="30" y1="102" x2="30" y2="145" class="wire"></line>
+          <!-- R1 -->
+          <line x1="110" y1="45" x2="110" y2="68" class="wire"></line>
+          <polyline points="110,68 100,75 120,81 100,87 120,93 100,99 110,106" class="res"></polyline>
+          <line x1="110" y1="106" x2="110" y2="145" class="wire"></line>
+          <text x="124" y="90" class="rlbl">R₁=5Ω</text>
+          <!-- R2 -->
+          <line x1="190" y1="45" x2="190" y2="68" class="wire"></line>
+          <polyline points="190,68 180,75 200,81 180,87 200,93 180,99 190,106" class="res"></polyline>
+          <line x1="190" y1="106" x2="190" y2="145" class="wire"></line>
+          <text x="204" y="90" class="rlbl">R₂=10Ω</text>
+          <!-- R3 -->
+          <line x1="270" y1="45" x2="270" y2="68" class="wire"></line>
+          <polyline points="270,68 260,75 280,81 260,87 280,93 260,99 270,106" class="res"></polyline>
+          <line x1="270" y1="106" x2="270" y2="145" class="wire"></line>
+          <text x="284" y="90" class="rlbl">R₃=15Ω</text>
+          <!-- nodes -->
+          <circle cx="110" cy="45" r="4" class="npt"></circle>
+          <circle cx="190" cy="45" r="4" class="npt"></circle>
+          <circle cx="270" cy="45" r="4" class="npt"></circle>
+          <!-- iT arrow from source top -->
+          <polygon points="70,45 62,39 62,51" fill="#1565c0"></polygon>
+          <text x="66" y="38" style="font-size:8px;font-family:monospace;fill:#1565c0">iT→</text>
+        </svg>
+        <figcaption>Fig. EJ08 — Paralelo puro: tres ramas con Vs = 30 V</figcaption>
+      </div>
+      <div class="result">✓ i₁ = 6 A &nbsp;|&nbsp; i₂ = 3 A &nbsp;|&nbsp; i₃ = 2 A &nbsp;|&nbsp; i<sub>T</sub> = 11 A<small>Verificación LCK: i<sub>T</sub> = i₁+i₂+i₃ → 11 = 6+3+2 ✓</small></div>
+    </div>
+  </div>
+
+  <!-- EJ 09 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 09</span><h4>Análisis de mallas — Sistema de 2 ecuaciones</h4></div>
+    <div class="ex-body">
+      <p>Circuito con dos mallas: M₁ tiene Vs = 15 V y R₁ = 3 Ω; M₂ tiene R₂ = 6 Ω; ambas comparten R₃ = 4 Ω. Corrientes horarias i₁ (M₁) e i₂ (M₂). Calcule <strong>i₁</strong> e <strong>i₂</strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 340 160" width="100%" style="max-width:320px">
+          <rect width="340" height="160" fill="#f2f6fc" rx="6"></rect>
+          <line x1="35" y1="35" x2="175" y2="35" class="wire"></line>
+          <line x1="175" y1="35" x2="305" y2="35" class="wire"></line>
+          <line x1="35" y1="35" x2="35" y2="125" class="wire"></line>
+          <line x1="175" y1="35" x2="175" y2="125" class="wire"></line>
+          <line x1="305" y1="35" x2="305" y2="125" class="wire"></line>
+          <line x1="35" y1="125" x2="175" y2="125" class="wire"></line>
+          <line x1="175" y1="125" x2="305" y2="125" class="wire"></line>
+          <!-- Vs -->
+          <line x1="35" y1="35" x2="35" y2="63" class="wire"></line>
+          <circle cx="35" cy="78" r="14" class="src"></circle>
+          <text x="35" y="76" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="35" y="86" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">15V</text>
+          <line x1="35" y1="92" x2="35" y2="125" class="wire"></line>
+          <!-- R1 top left -->
+          <polyline points="62,35 68,25 74,45 80,25 86,45 92,25 98,35" class="res"></polyline>
+          <text x="80" y="20" text-anchor="middle" class="rlbl">R₁=3Ω</text>
+          <!-- R3 center vertical -->
+          <line x1="175" y1="35" x2="175" y2="60" class="wire"></line>
+          <polyline points="175,60 165,67 185,73 165,79 185,85 165,91 175,98" class="res"></polyline>
+          <line x1="175" y1="98" x2="175" y2="125" class="wire"></line>
+          <text x="190" y="82" class="rlbl">R₃=4Ω</text>
+          <!-- R2 right vertical -->
+          <line x1="305" y1="35" x2="305" y2="60" class="wire"></line>
+          <polyline points="305,60 295,67 315,73 295,79 315,85 295,91 305,98" class="res"></polyline>
+          <line x1="305" y1="98" x2="305" y2="125" class="wire"></line>
+          <text x="318" y="82" class="rlbl">R₂=6Ω</text>
+          <!-- nodes -->
+          <circle cx="35" cy="35" r="4" class="npt"></circle>
+          <circle cx="175" cy="35" r="4" class="npt"></circle>
+          <circle cx="305" cy="35" r="4" class="npt"></circle>
+          <circle cx="35" cy="125" r="4" class="npt"></circle>
+          <circle cx="175" cy="125" r="4" class="npt"></circle>
+          <circle cx="305" cy="125" r="4" class="npt"></circle>
+          <!-- malla labels -->
+          <text x="105" y="88" text-anchor="middle" class="mlbl">M₁ (i₁)</text>
+          <text x="240" y="88" text-anchor="middle" style="font-family:monospace;font-size:10px;fill:#166534">M₂ (i₂)</text>
+        </svg>
+        <figcaption>Fig. EJ09 — Dos mallas con R₃ compartida</figcaption>
+      </div>
+      <div class="result">✓ i₁ ≈ 2,78 A &nbsp;|&nbsp; i₂ ≈ 1,11 A</div>
+    </div>
+  </div>
+
+  <!-- EJ 10 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 10</span><h4>LVK — Determinación de un voltaje desconocido</h4></div>
+    <div class="ex-body">
+      <p>En un lazo cerrado (sentido horario): +18 V (fuente), −4 V (caída en R₁), −V<sub>x</sub> (elemento desconocido), −6 V (caída en R₂). Aplique LVK para determinar <strong>V<sub>x</sub></strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 320 155" width="100%" style="max-width:300px">
+          <rect width="320" height="155" fill="#f2f6fc" rx="6"></rect>
+          <line x1="40" y1="35" x2="280" y2="35" class="wire"></line>
+          <line x1="280" y1="35" x2="280" y2="120" class="wire"></line>
+          <line x1="40" y1="120" x2="280" y2="120" class="wire"></line>
+          <line x1="40" y1="35" x2="40" y2="63" class="wire"></line>
+          <circle cx="40" cy="78" r="14" class="src"></circle>
+          <text x="40" y="75" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">18V</text>
+          <text x="28" y="75" font-size="11" fill="#6d28d9">+</text>
+          <line x1="40" y1="92" x2="40" y2="120" class="wire"></line>
+          <!-- R1 top -->
+          <polyline points="70,35 76,25 82,45 88,25 94,45 100,25 106,35" class="res"></polyline>
+          <text x="88" y="20" text-anchor="middle" class="rlbl">R₁ (−4V)</text>
+          <!-- Vx top center -->
+          <rect x="140" y="25" width="50" height="22" rx="4" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"></rect>
+          <text x="165" y="40" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#c0392b">−Vx=?</text>
+          <!-- R2 right vertical -->
+          <polyline points="280,52 270,59 290,65 270,71 290,77 270,83 280,90" class="res"></polyline>
+          <text x="292" y="73" class="rlbl">R₂(−6V)</text>
+          <!-- arrows showing KVL traversal -->
+          <polygon points="160,120 154,113 166,113" fill="#166534"></polygon>
+          <text x="160" y="138" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#166534">Recorrido horario ↻</text>
+        </svg>
+        <figcaption>Fig. EJ10 — LVK: lazo con voltaje desconocido Vx</figcaption>
+      </div>
+      <div class="result">✓ V<sub>x</sub> = 8 V</div>
+    </div>
+  </div>
+
+  <!-- EJ 11 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 11</span><h4>LCK — Nodo con corriente de signo desconocido</h4></div>
+    <div class="ex-body">
+      <p>En el nodo <strong>D</strong>: i<sub>a</sub> = 10 A (entra), i<sub>b</sub> = 3 A (entra), i<sub>c</sub> = 7 A (sale), i<sub>d</sub> = ? (se asume entra). Determine i<sub>d</sub> e indique la dirección real.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 280 200" width="100%" style="max-width:255px">
+          <rect width="280" height="200" fill="#f2f6fc" rx="6"></rect>
+          <circle cx="140" cy="100" r="8" fill="#1565c0"></circle>
+          <text x="140" y="88" text-anchor="middle" class="nlbl">D</text>
+          <!-- ia entra arriba izq -->
+          <line x1="55" y1="40" x2="133" y2="93" class="wire" stroke="#166534" stroke-width="2"></line>
+          <polygon points="133,93 123,85 129,79" fill="#166534"></polygon>
+          <text x="30" y="36" class="ilbl-in">iₐ=10A</text>
+          <!-- ib entra arriba der -->
+          <line x1="225" y1="40" x2="147" y2="93" class="wire" stroke="#166534" stroke-width="2"></line>
+          <polygon points="147,93 157,85 151,79" fill="#166534"></polygon>
+          <text x="196" y="36" class="ilbl-in">i_b=3A</text>
+          <!-- ic sale abajo izq -->
+          <line x1="133" y1="107" x2="55" y2="160" class="wire" stroke="#c0392b" stroke-width="2"></line>
+          <polygon points="55,160 67,152 61,164" fill="#c0392b"></polygon>
+          <text x="22" y="168" class="ilbl-out">i_c=7A</text>
+          <!-- id sale abajo der (asume entra, etiquetado con ?) -->
+          <line x1="147" y1="107" x2="225" y2="160" class="wire" stroke="#c07800" stroke-width="2" stroke-dasharray="5,3"></line>
+          <polygon points="225,160 213,152 219,164" fill="#c07800"></polygon>
+          <text x="194" y="168" style="font-family:monospace;font-size:10px;fill:#c07800">i_d=?</text>
+          <text x="140" y="183" text-anchor="middle" style="font-size:8px;font-family:monospace;fill:#5a6478">? = dirección a determinar</text>
+        </svg>
+        <figcaption>Fig. EJ11 — Nodo D: id con dirección desconocida</figcaption>
+      </div>
+      <div class="result">✓ i<sub>d</sub> = −6 A &nbsp;→&nbsp; la corriente real <strong>sale</strong> del nodo con 6 A</div>
+    </div>
+  </div>
+
+  <!-- EJ 12 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 12</span><h4>LVK — Circuito con inductor en régimen DC permanente</h4></div>
+    <div class="ex-body">
+      <p>En régimen permanente DC, un inductor se comporta como cortocircuito (V<sub>L</sub> = 0). Circuito serie: Vs = 50 V, R₁ = 10 Ω, R₂ = 15 Ω, inductor L. Calcule <strong>i</strong> y la caída en cada elemento.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 330 155" width="100%" style="max-width:310px">
+          <rect width="330" height="155" fill="#f2f6fc" rx="6"></rect>
+          <line x1="40" y1="35" x2="290" y2="35" class="wire"></line>
+          <line x1="290" y1="35" x2="290" y2="120" class="wire"></line>
+          <line x1="40" y1="120" x2="290" y2="120" class="wire"></line>
+          <line x1="40" y1="35" x2="40" y2="63" class="wire"></line>
+          <circle cx="40" cy="78" r="14" class="src"></circle>
+          <text x="40" y="76" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="40" y="86" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">50V</text>
+          <line x1="40" y1="92" x2="40" y2="120" class="wire"></line>
+          <!-- R1 -->
+          <polyline points="72,35 78,25 84,45 90,25 96,45 102,25 108,35" class="res"></polyline>
+          <text x="90" y="20" text-anchor="middle" class="rlbl">R₁=10Ω</text>
+          <!-- R2 -->
+          <polyline points="150,35 156,25 162,45 168,25 174,45 180,25 186,35" class="res"></polyline>
+          <text x="168" y="20" text-anchor="middle" class="rlbl">R₂=15Ω</text>
+          <!-- Inductor (coils symbol) -->
+          <path d="M 220,35 Q 226,25 232,35 Q 238,25 244,35 Q 250,25 256,35 Q 262,25 268,35" fill="none" stroke="#1565c0" stroke-width="2.5"></path>
+          <text x="244" y="20" text-anchor="middle" style="font-size:10px;font-family:monospace;fill:#1565c0">L (V_L=0)</text>
+          <!-- nodes -->
+          <circle cx="40" cy="35" r="3.5" class="npt"></circle>
+          <circle cx="290" cy="35" r="3.5" class="npt"></circle>
+          <polygon points="165,120 159,113 171,113" fill="#166534"></polygon>
+          <text x="165" y="140" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#166534">i ↻</text>
+        </svg>
+        <figcaption>Fig. EJ12 — Serie DC con inductor (VL = 0 en régimen permanente)</figcaption>
+      </div>
+      <div class="result">✓ i = 2 A &nbsp;|&nbsp; V<sub>R₁</sub> = 20 V &nbsp;|&nbsp; V<sub>R₂</sub> = 30 V &nbsp;|&nbsp; V<sub>L</sub> = 0 V</div>
+    </div>
+  </div>
+
+  <!-- EJ 13 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 13</span><h4>Análisis de nodos — Supernodo</h4></div>
+    <div class="ex-body">
+      <p>Entre V₁ y V₂ existe una fuente que impone V₁ − V₂ = 5 V. R₁ = 2 Ω (V₁ a tierra), R₂ = 4 Ω (V₂ a tierra). Fuente de 3 A entra al supernodo (V₁, V₂). Calcule <strong>V₁</strong> y <strong>V₂</strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 310 180" width="100%" style="max-width:290px">
+          <rect width="310" height="180" fill="#f2f6fc" rx="6"></rect>
+          <!-- supernodo dashed boundary -->
+          <rect x="70" y="30" width="170" height="60" rx="8" fill="none" stroke="#c07800" stroke-width="1.5" stroke-dasharray="6,3"></rect>
+          <text x="155" y="22" text-anchor="middle" style="font-size:8px;font-family:monospace;fill:#c07800">SUPERNODO</text>
+          <!-- V1 and V2 nodes -->
+          <circle cx="100" cy="60" r="6" fill="#1565c0"></circle>
+          <text x="100" y="48" text-anchor="middle" class="nlbl">V₁</text>
+          <circle cx="210" cy="60" r="6" fill="#1565c0"></circle>
+          <text x="210" y="48" text-anchor="middle" class="nlbl">V₂</text>
+          <!-- voltage source between V1 and V2 -->
+          <line x1="106" y1="60" x2="148" y2="60" class="wire"></line>
+          <circle cx="155" cy="60" r="12" class="src"></circle>
+          <text x="155" y="58" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">5V</text>
+          <text x="143" y="58" font-size="10" fill="#6d28d9">+</text>
+          <line x1="167" y1="60" x2="204" y2="60" class="wire"></line>
+          <!-- R1: V1 to ground -->
+          <line x1="100" y1="66" x2="100" y2="88" class="wire"></line>
+          <polyline points="100,88 90,95 110,101 90,107 110,113 90,119 100,126" class="res"></polyline>
+          <line x1="100" y1="126" x2="100" y2="148" class="wire"></line>
+          <text x="114" y="108" class="rlbl">R₁=2Ω</text>
+          <!-- R2: V2 to ground -->
+          <line x1="210" y1="66" x2="210" y2="88" class="wire"></line>
+          <polyline points="210,88 200,95 220,101 200,107 220,113 200,119 210,126" class="res"></polyline>
+          <line x1="210" y1="126" x2="210" y2="148" class="wire"></line>
+          <text x="224" y="108" class="rlbl">R₂=4Ω</text>
+          <!-- ground bus -->
+          <line x1="60" y1="148" x2="260" y2="148" class="wire"></line>
+          <line x1="160" y1="148" x2="160" y2="158" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="148" y1="158" x2="172" y2="158" stroke="#5a6478" stroke-width="2.5"></line>
+          <line x1="152" y1="163" x2="168" y2="163" stroke="#5a6478" stroke-width="2"></line>
+          <!-- Is: 3A into supernodo -->
+          <line x1="60" y1="148" x2="60" y2="60" class="wire" stroke="#166534"></line>
+          <circle cx="60" cy="104" r="13" class="src-i"></circle>
+          <text x="60" y="102" text-anchor="middle" font-size="8" font-family="monospace" fill="#166534">3A</text>
+          <line x1="60" y1="60" x2="94" y2="60" class="wire" stroke="#166534"></line>
+          <polygon points="94,60 84,55 84,65" fill="#166534"></polygon>
+        </svg>
+        <figcaption>Fig. EJ13 — Supernodo: fuente de tensión entre V₁ y V₂</figcaption>
+      </div>
+      <div class="result">✓ V₁ = 7 V &nbsp;|&nbsp; V₂ = 2 V</div>
+    </div>
+  </div>
+
+  <!-- EJ 14 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 14</span><h4>LVK — Verificación en un lazo no mínimo</h4></div>
+    <div class="ex-body">
+      <p>Circuito de dos mallas: V<sub>R₁</sub> = 6 V, V<sub>R₂</sub> = 4 V, V<sub>R₃</sub> = 3 V, Vs = 10 V. Recorra el <strong>lazo exterior</strong> y determine V<sub>x</sub> en la rama compartida para que se cumpla LVK.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 340 160" width="100%" style="max-width:320px">
+          <rect width="340" height="160" fill="#f2f6fc" rx="6"></rect>
+          <!-- outer rectangle -->
+          <line x1="35" y1="35" x2="175" y2="35" class="wire"></line>
+          <line x1="175" y1="35" x2="305" y2="35" class="wire"></line>
+          <line x1="35" y1="35" x2="35" y2="125" class="wire"></line>
+          <line x1="175" y1="35" x2="175" y2="125" class="wire"></line>
+          <line x1="305" y1="35" x2="305" y2="125" class="wire"></line>
+          <line x1="35" y1="125" x2="175" y2="125" class="wire"></line>
+          <line x1="175" y1="125" x2="305" y2="125" class="wire"></line>
+          <!-- Vs left -->
+          <line x1="35" y1="35" x2="35" y2="63" class="wire"></line>
+          <circle cx="35" cy="78" r="14" class="src"></circle>
+          <text x="35" y="76" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="35" y="86" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">10V</text>
+          <line x1="35" y1="92" x2="35" y2="125" class="wire"></line>
+          <!-- R1 top left -->
+          <polyline points="65,35 71,25 77,45 83,25 89,45 95,25 101,35" class="res"></polyline>
+          <text x="83" y="20" text-anchor="middle" class="rlbl">R₁(6V)</text>
+          <!-- R2 top right -->
+          <polyline points="210,35 216,25 222,45 228,25 234,45 240,25 246,35" class="res"></polyline>
+          <text x="228" y="20" text-anchor="middle" class="rlbl">R₂(4V)</text>
+          <!-- Vx center vertical (shared branch) -->
+          <rect x="164" y="50" width="24" height="28" rx="3" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"></rect>
+          <text x="176" y="67" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#c0392b">Vx</text>
+          <!-- R3 right vertical -->
+          <line x1="305" y1="35" x2="305" y2="60" class="wire"></line>
+          <polyline points="305,60 295,67 315,73 295,79 315,85 295,91 305,98" class="res"></polyline>
+          <line x1="305" y1="98" x2="305" y2="125" class="wire"></line>
+          <text x="318" y="82" class="rlbl">R₃(3V)</text>
+          <!-- outer loop arrow -->
+          <path d="M 80,130 Q 170,148 260,130" fill="none" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="5,3"></path>
+          <polygon points="260,130 250,126 252,136" fill="#6d28d9"></polygon>
+          <text x="170" y="152" text-anchor="middle" style="font-size:8px;font-family:monospace;fill:#6d28d9">Lazo exterior L₃</text>
+        </svg>
+        <figcaption>Fig. EJ14 — LVK en lazo exterior: determinar Vx</figcaption>
+      </div>
+      <div class="result">✓ V<sub>x</sub> = −3 V &nbsp;(la caída real es opuesta a la dirección asumida)</div>
+    </div>
+  </div>
+
+  <!-- EJ 15 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 15</span><h4>Análisis de mallas — Tres mallas con resistencias compartidas</h4></div>
+    <div class="ex-body">
+      <p>Tres mallas con corrientes horarias i₁, i₂, i₃: M₁ tiene Vs=12V, R₁=2Ω (exclusiva), R₂=4Ω (M₁-M₂ compartida); M₂ tiene R₃=3Ω (M₂-M₃ compartida); M₃ tiene R₄=6Ω (exclusiva), V₂=6V.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 400 160" width="100%" style="max-width:380px">
+          <rect width="400" height="160" fill="#f2f6fc" rx="6"></rect>
+          <!-- 3 mallas: 4 vertical branches, top+bottom wires -->
+          <line x1="25" y1="35" x2="130" y2="35" class="wire"></line>
+          <line x1="130" y1="35" x2="235" y2="35" class="wire"></line>
+          <line x1="235" y1="35" x2="375" y2="35" class="wire"></line>
+          <line x1="25" y1="35" x2="25" y2="125" class="wire"></line>
+          <line x1="130" y1="35" x2="130" y2="125" class="wire"></line>
+          <line x1="235" y1="35" x2="235" y2="125" class="wire"></line>
+          <line x1="375" y1="35" x2="375" y2="125" class="wire"></line>
+          <line x1="25" y1="125" x2="130" y2="125" class="wire"></line>
+          <line x1="130" y1="125" x2="235" y2="125" class="wire"></line>
+          <line x1="235" y1="125" x2="375" y2="125" class="wire"></line>
+          <!-- Vs left -->
+          <line x1="25" y1="35" x2="25" y2="62" class="wire"></line>
+          <circle cx="25" cy="76" r="13" class="src"></circle>
+          <text x="25" y="80" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">Vs 12V</text>
+          <line x1="25" y1="89" x2="25" y2="125" class="wire"></line>
+          <!-- V2 right -->
+          <line x1="375" y1="35" x2="375" y2="62" class="wire"></line>
+          <circle cx="375" cy="76" r="13" class="src"></circle>
+          <text x="375" y="80" text-anchor="middle" font-size="7" font-family="monospace" fill="#c0392b">V₂ 6V</text>
+          <line x1="375" y1="89" x2="375" y2="125" class="wire"></line>
+          <!-- R1 top M1 -->
+          <polyline points="50,35 55,26 60,44 65,26 70,44 75,26 80,35" class="res"></polyline>
+          <text x="65" y="21" text-anchor="middle" class="rlbl">R₁=2Ω</text>
+          <!-- R2 shared M1-M2 vertical -->
+          <line x1="130" y1="35" x2="130" y2="58" class="wire"></line>
+          <polyline points="130,58 120,65 140,71 120,77 140,83 120,89 130,96" class="res"></polyline>
+          <line x1="130" y1="96" x2="130" y2="125" class="wire"></line>
+          <text x="145" y="80" class="rlbl">R₂=4Ω</text>
+          <!-- R3 shared M2-M3 vertical -->
+          <line x1="235" y1="35" x2="235" y2="58" class="wire"></line>
+          <polyline points="235,58 225,65 245,71 225,77 245,83 225,89 235,96" class="res"></polyline>
+          <line x1="235" y1="96" x2="235" y2="125" class="wire"></line>
+          <text x="250" y="80" class="rlbl">R₃=3Ω</text>
+          <!-- R4 top M3 -->
+          <polyline points="280,35 285,26 290,44 295,26 300,44 305,26 310,35" class="res"></polyline>
+          <text x="295" y="21" text-anchor="middle" class="rlbl">R₄=6Ω</text>
+          <!-- malla labels -->
+          <text x="78" y="88" text-anchor="middle" class="mlbl">M₁(i₁)</text>
+          <text x="183" y="88" text-anchor="middle" style="font-family:monospace;font-size:9px;fill:#166534">M₂(i₂)</text>
+          <text x="305" y="88" text-anchor="middle" style="font-family:monospace;font-size:9px;fill:#6d28d9">M₃(i₃)</text>
+        </svg>
+        <figcaption>Fig. EJ15 — Tres mallas: R₂ compartida M₁-M₂, R₃ compartida M₂-M₃</figcaption>
+      </div>
+      <div class="result">✓ i₁ ≈ 1,85 A &nbsp;|&nbsp; i₂ ≈ 0,69 A &nbsp;|&nbsp; i₃ ≈ 0,44 A</div>
+    </div>
+  </div>
+
+  <!-- EJ 16 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 16</span><h4>LCK — Circuito con fuente de corriente dependiente</h4></div>
+    <div class="ex-body">
+      <p>En el nodo <strong>E</strong> confluyen: fuente Is = 5 A (entra), fuente dependiente 2i<sub>x</sub> (sale, donde i<sub>x</sub> circula por R₁), R₂ = 8 Ω a tierra. Si V<sub>E</sub> = 16 V, calcule i<sub>R₂</sub>, i<sub>dep</sub> e i<sub>x</sub>. Verifique LCK.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 310 185" width="100%" style="max-width:290px">
+          <rect width="310" height="185" fill="#f2f6fc" rx="6"></rect>
+          <!-- node E -->
+          <circle cx="155" cy="60" r="7" fill="#1565c0"></circle>
+          <text x="155" y="46" text-anchor="middle" class="nlbl">E (VE=16V)</text>
+          <!-- Is entra desde izquierda -->
+          <line x1="40" y1="60" x2="100" y2="60" class="wire" stroke="#166534"></line>
+          <circle cx="70" cy="60" r="13" class="src-i"></circle>
+          <text x="70" y="58" text-anchor="middle" font-size="8" font-family="monospace" fill="#166534">Is</text>
+          <text x="70" y="68" text-anchor="middle" font-size="7" font-family="monospace" fill="#166534">5A</text>
+          <polygon points="100,60 90,55 90,65" fill="#166534"></polygon>
+          <!-- 2ix sale hacia derecha (dependent source) -->
+          <line x1="162" y1="60" x2="210" y2="60" class="wire" stroke="#c0392b"></line>
+          <circle cx="228" cy="60" r="15" class="src-i" style="stroke:#c0392b"></circle>
+          <text x="228" y="57" text-anchor="middle" font-size="8" font-family="monospace" fill="#c0392b">2ix</text>
+          <text x="228" y="67" text-anchor="middle" font-size="7" font-family="monospace" fill="#c0392b">dep.</text>
+          <line x1="243" y1="60" x2="270" y2="60" class="wire" stroke="#c0392b"></line>
+          <line x1="270" y1="60" x2="270" y2="155" stroke="#c0392b" stroke-width="2"></line>
+          <!-- R2 a tierra -->
+          <line x1="155" y1="67" x2="155" y2="88" class="wire"></line>
+          <polyline points="155,88 145,95 165,101 145,107 165,113 145,119 155,126" class="res"></polyline>
+          <line x1="155" y1="126" x2="155" y2="155" class="wire"></line>
+          <text x="170" y="108" class="rlbl">R₂=8Ω</text>
+          <!-- R1 (ix path) on left branch coming into Is -->
+          <line x1="40" y1="155" x2="40" y2="100" class="wire"></line>
+          <polyline points="40,100 30,94 50,88 30,82 50,76 30,70 40,64" class="res"></polyline>
+          <text x="14" y="88" class="rlbl">R₁</text>
+          <text x="14" y="98" style="font-size:8px;font-family:monospace;fill:#c07800">(ix)</text>
+          <!-- ground bus -->
+          <line x1="40" y1="155" x2="270" y2="155" class="wire"></line>
+          <line x1="155" y1="155" x2="155" y2="165" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="143" y1="165" x2="167" y2="165" stroke="#5a6478" stroke-width="2.5"></line>
+          <line x1="147" y1="170" x2="163" y2="170" stroke="#5a6478" stroke-width="2"></line>
+        </svg>
+        <figcaption>Fig. EJ16 — Nodo E con fuente dependiente 2i<sub>x</sub></figcaption>
+      </div>
+      <div class="result">✓ i<sub>R₂</sub> = 2 A &nbsp;|&nbsp; i<sub>dep</sub> = 3 A &nbsp;|&nbsp; i<sub>x</sub> = 1,5 A<small>Verificación LCK: 5 = 3 + 2 ✓</small></div>
+    </div>
+  </div>
+
+  <!-- EJ 17 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 17</span><h4>LVK — Potencia entregada y absorbida</h4></div>
+    <div class="ex-body">
+      <p>Circuito serie: Vs = 40 V, R₁ = 5 Ω, R₂ = 3 Ω, R₃ = 2 Ω. Calcule la corriente <strong>i</strong>, la potencia entregada por la fuente y la absorbida por cada resistencia. Verifique conservación de energía.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 360 155" width="100%" style="max-width:340px">
+          <rect width="360" height="155" fill="#f2f6fc" rx="6"></rect>
+          <line x1="40" y1="35" x2="320" y2="35" class="wire"></line>
+          <line x1="320" y1="35" x2="320" y2="120" class="wire"></line>
+          <line x1="40" y1="120" x2="320" y2="120" class="wire"></line>
+          <line x1="40" y1="35" x2="40" y2="63" class="wire"></line>
+          <circle cx="40" cy="78" r="14" class="src"></circle>
+          <text x="40" y="76" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="40" y="86" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">40V</text>
+          <line x1="40" y1="92" x2="40" y2="120" class="wire"></line>
+          <!-- R1 -->
+          <polyline points="75,35 81,25 87,45 93,25 99,45 105,25 111,35" class="res"></polyline>
+          <text x="93" y="20" text-anchor="middle" class="rlbl">R₁=5Ω</text>
+          <!-- R2 -->
+          <polyline points="165,35 171,25 177,45 183,25 189,45 195,25 201,35" class="res"></polyline>
+          <text x="183" y="20" text-anchor="middle" class="rlbl">R₂=3Ω</text>
+          <!-- R3 -->
+          <polyline points="250,35 256,25 262,45 268,25 274,45 280,25 286,35" class="res"></polyline>
+          <text x="268" y="20" text-anchor="middle" class="rlbl">R₃=2Ω</text>
+          <!-- power labels -->
+          <text x="93" y="52" text-anchor="middle" style="font-size:8px;font-family:monospace;fill:#166534">P=80W</text>
+          <text x="183" y="52" text-anchor="middle" style="font-size:8px;font-family:monospace;fill:#166534">P=48W</text>
+          <text x="268" y="52" text-anchor="middle" style="font-size:8px;font-family:monospace;fill:#166534">P=32W</text>
+          <polygon points="180,120 174,113 186,113" fill="#166534"></polygon>
+          <text x="180" y="140" text-anchor="middle" style="font-size:9px;font-family:monospace;fill:#166534">i = 4A ↻</text>
+        </svg>
+        <figcaption>Fig. EJ17 — Serie con 3 resistencias: potencias indicadas</figcaption>
+      </div>
+      <div class="result">✓ i = 4 A &nbsp;|&nbsp; P<sub>fuente</sub> = 160 W &nbsp;|&nbsp; P<sub>R₁</sub>=80W &nbsp;|&nbsp; P<sub>R₂</sub>=48W &nbsp;|&nbsp; P<sub>R₃</sub>=32W<small>Verificación: 80+48+32 = 160 W ✓</small></div>
+    </div>
+  </div>
+
+  <!-- EJ 18 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 18</span><h4>Análisis de nodos — Circuito mixto (fuentes V e I)</h4></div>
+    <div class="ex-body">
+      <p>Nodo V₁ único desconocido. Conexiones: fuente Vs=10V en serie con Rs=2Ω (tierra→V₁), fuente Is=1A entra a V₁, RL=5Ω (V₁ a tierra). Calcule <strong>V₁</strong> e <strong>i<sub>RL</sub></strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 310 180" width="100%" style="max-width:285px">
+          <rect width="310" height="180" fill="#f2f6fc" rx="6"></rect>
+          <!-- node V1 -->
+          <circle cx="155" cy="55" r="7" fill="#1565c0"></circle>
+          <text x="155" y="42" text-anchor="middle" class="nlbl">V₁</text>
+          <!-- left branch: Vs + Rs -->
+          <line x1="50" y1="150" x2="50" y2="110" class="wire"></line>
+          <circle cx="50" cy="96" r="13" class="src"></circle>
+          <text x="50" y="94" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="50" y="104" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">10V</text>
+          <line x1="50" y1="83" x2="50" y2="68" class="wire"></line>
+          <polyline points="50,68 40,62 60,56 40,50 60,44 40,38 50,32" class="res"></polyline>
+          <line x1="50" y1="32" x2="50" y2="20" class="wire"></line>
+          <line x1="50" y1="20" x2="148" y2="20" class="wire"></line>
+          <line x1="148" y1="20" x2="148" y2="55" class="wire"></line>
+          <text x="62" y="52" class="rlbl">Rs=2Ω</text>
+          <!-- Is enters V1 from right -->
+          <line x1="260" y1="150" x2="260" y2="90" class="wire" stroke="#166534"></line>
+          <circle cx="260" cy="76" r="13" class="src-i"></circle>
+          <text x="260" y="74" text-anchor="middle" font-size="8" font-family="monospace" fill="#166534">Is</text>
+          <text x="260" y="84" text-anchor="middle" font-size="7" font-family="monospace" fill="#166534">1A</text>
+          <line x1="260" y1="63" x2="260" y2="55" class="wire" stroke="#166534"></line>
+          <line x1="260" y1="55" x2="162" y2="55" class="wire" stroke="#166534"></line>
+          <polygon points="162,55 172,50 172,60" fill="#166534"></polygon>
+          <!-- RL: V1 to ground -->
+          <line x1="155" y1="62" x2="155" y2="85" class="wire"></line>
+          <polyline points="155,85 145,92 165,98 145,104 165,110 145,116 155,123" class="res"></polyline>
+          <line x1="155" y1="123" x2="155" y2="150" class="wire"></line>
+          <text x="170" y="104" class="rlbl">RL=5Ω</text>
+          <!-- ground bus -->
+          <line x1="40" y1="150" x2="270" y2="150" class="wire"></line>
+          <line x1="155" y1="150" x2="155" y2="160" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="143" y1="160" x2="167" y2="160" stroke="#5a6478" stroke-width="2.5"></line>
+          <line x1="147" y1="165" x2="163" y2="165" stroke="#5a6478" stroke-width="2"></line>
+        </svg>
+        <figcaption>Fig. EJ18 — Nodo V₁ con fuentes mixtas Vs+Rs e Is</figcaption>
+      </div>
+      <div class="result">✓ V₁ ≈ 8,57 V &nbsp;|&nbsp; i<sub>RL</sub> ≈ 1,71 A</div>
+    </div>
+  </div>
+
+  <!-- EJ 19 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 19</span><h4>LCK + LVK — Red escalonada de tres nodos</h4></div>
+    <div class="ex-body">
+      <p>Red escalonada: Vs=20V con Ra=2Ω alimenta nodo A. En A: Rb=4Ω (hacia nodo B) y Rc=8Ω (a tierra). En B: Rd=4Ω (a tierra). Aplique LCK en A y B para calcular <strong>V<sub>A</sub></strong> y <strong>V<sub>B</sub></strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 320 175" width="100%" style="max-width:295px">
+          <rect width="320" height="175" fill="#f2f6fc" rx="6"></rect>
+          <!-- Vs + Ra branch left -->
+          <line x1="40" y1="155" x2="40" y2="110" class="wire"></line>
+          <circle cx="40" cy="96" r="13" class="src"></circle>
+          <text x="40" y="94" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="40" y="104" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">20V</text>
+          <line x1="40" y1="83" x2="40" y2="66" class="wire"></line>
+          <polyline points="40,66 30,60 50,54 30,48 50,42 30,36 40,30" class="res"></polyline>
+          <text x="54" y="50" class="rlbl">Ra=2Ω</text>
+          <line x1="40" y1="30" x2="40" y2="20" class="wire"></line>
+          <line x1="40" y1="20" x2="120" y2="20" class="wire"></line>
+          <!-- node A -->
+          <circle cx="120" cy="20" r="6" fill="#1565c0"></circle>
+          <text x="120" y="10" text-anchor="middle" class="nlbl">A</text>
+          <!-- Rb: A to B -->
+          <line x1="126" y1="20" x2="168" y2="20" class="wire"></line>
+          <polyline points="168,20 174,10 180,30 186,10 192,30 198,10 204,20" class="res"></polyline>
+          <text x="186" y="8" text-anchor="middle" class="rlbl">Rb=4Ω</text>
+          <line x1="204" y1="20" x2="240" y2="20" class="wire"></line>
+          <!-- node B -->
+          <circle cx="240" cy="20" r="6" fill="#1565c0"></circle>
+          <text x="240" y="10" text-anchor="middle" class="nlbl">B</text>
+          <!-- Rc: A to ground -->
+          <line x1="120" y1="26" x2="120" y2="50" class="wire"></line>
+          <polyline points="120,50 110,57 130,63 110,69 130,75 110,81 120,88" class="res"></polyline>
+          <line x1="120" y1="88" x2="120" y2="155" class="wire"></line>
+          <text x="134" y="70" class="rlbl">Rc=8Ω</text>
+          <!-- Rd: B to ground -->
+          <line x1="240" y1="26" x2="240" y2="50" class="wire"></line>
+          <polyline points="240,50 230,57 250,63 230,69 250,75 230,81 240,88" class="res"></polyline>
+          <line x1="240" y1="88" x2="240" y2="155" class="wire"></line>
+          <text x="254" y="70" class="rlbl">Rd=4Ω</text>
+          <!-- ground bus -->
+          <line x1="30" y1="155" x2="260" y2="155" class="wire"></line>
+          <line x1="155" y1="155" x2="155" y2="165" stroke="#5a6478" stroke-width="2"></line>
+          <line x1="143" y1="165" x2="167" y2="165" stroke="#5a6478" stroke-width="2.5"></line>
+          <line x1="147" y1="170" x2="163" y2="170" stroke="#5a6478" stroke-width="2"></line>
+        </svg>
+        <figcaption>Fig. EJ19 — Red escalonada: nodos A y B con Ra, Rb, Rc, Rd</figcaption>
+      </div>
+      <div class="result">✓ V<sub>A</sub> ≈ 13,33 V &nbsp;|&nbsp; V<sub>B</sub> ≈ 6,67 V</div>
+    </div>
+  </div>
+
+  <!-- EJ 20 -->
+  <div class="exercise">
+    <div class="ex-header"><span class="ex-num">EJ 20</span><h4>Ejercicio integrador — Mallas con fuente de tensión dependiente</h4></div>
+    <div class="ex-body">
+      <p>Dos mallas, corrientes horarias i₁ e i₂: M₁ tiene Vs=18V, R₁=6Ω, R₂=3Ω (compartida); M₂ tiene R₂=3Ω (compartida), R₃=9Ω y fuente dependiente V<sub>d</sub>=2i₁. Calcule <strong>i₁</strong>, <strong>i₂</strong> y <strong>V<sub>d</sub></strong>.</p>
+      <div class="circuit-box">
+        <svg viewBox="0 0 350 160" width="100%" style="max-width:330px">
+          <rect width="350" height="160" fill="#f2f6fc" rx="6"></rect>
+          <line x1="35" y1="35" x2="185" y2="35" class="wire"></line>
+          <line x1="185" y1="35" x2="315" y2="35" class="wire"></line>
+          <line x1="35" y1="35" x2="35" y2="125" class="wire"></line>
+          <line x1="185" y1="35" x2="185" y2="125" class="wire"></line>
+          <line x1="315" y1="35" x2="315" y2="125" class="wire"></line>
+          <line x1="35" y1="125" x2="185" y2="125" class="wire"></line>
+          <line x1="185" y1="125" x2="315" y2="125" class="wire"></line>
+          <!-- Vs left -->
+          <line x1="35" y1="35" x2="35" y2="62" class="wire"></line>
+          <circle cx="35" cy="76" r="13" class="src"></circle>
+          <text x="35" y="74" text-anchor="middle" font-size="8" font-family="monospace" fill="#6d28d9">Vs</text>
+          <text x="35" y="84" text-anchor="middle" font-size="7" font-family="monospace" fill="#6d28d9">18V</text>
+          <line x1="35" y1="89" x2="35" y2="125" class="wire"></line>
+          <!-- R1 top left -->
+          <polyline points="63,35 69,25 75,45 81,25 87,45 93,25 99,35" class="res"></polyline>
+          <text x="81" y="20" text-anchor="middle" class="rlbl">R₁=6Ω</text>
+          <!-- R2 center vertical (shared) -->
+          <line x1="185" y1="35" x2="185" y2="60" class="wire"></line>
+          <polyline points="185,60 175,67 195,73 175,79 195,85 175,91 185,98" class="res"></polyline>
+          <line x1="185" y1="98" x2="185" y2="125" class="wire"></line>
+          <text x="200" y="82" class="rlbl">R₂=3Ω</text>
+          <!-- R3 top right -->
+          <polyline points="225,35 231,25 237,45 243,25 249,45 255,25 261,35" class="res"></polyline>
+          <text x="243" y="20" text-anchor="middle" class="rlbl">R₃=9Ω</text>
+          <!-- Vd dependent source right vertical -->
+          <line x1="315" y1="35" x2="315" y2="60" class="wire"></line>
+          <rect x="302" y="60" width="26" height="38" rx="4" fill="#fff" stroke="#c0392b" stroke-width="2"></rect>
+          <text x="315" y="76" text-anchor="middle" font-size="8" font-family="monospace" fill="#c0392b">Vd</text>
+          <text x="315" y="86" text-anchor="middle" font-size="7" font-family="monospace" fill="#c0392b">=2i₁</text>
+          <line x1="315" y1="98" x2="315" y2="125" class="wire"></line>
+          <!-- nodes -->
+          <circle cx="35" cy="35" r="4" class="npt"></circle>
+          <circle cx="185" cy="35" r="4" class="npt"></circle>
+          <circle cx="315" cy="35" r="4" class="npt"></circle>
+          <!-- malla labels -->
+          <text x="110" y="88" text-anchor="middle" class="mlbl">M₁ (i₁)</text>
+          <text x="250" y="115" text-anchor="middle" style="font-family:monospace;font-size:9px;fill:#166534">M₂ (i₂)</text>
+        </svg>
+        <figcaption>Fig. EJ20 — Dos mallas con fuente dependiente Vd = 2i₁</figcaption>
+      </div>
+      <div class="result">✓ i₁ = 2 A &nbsp;|&nbsp; i₂ = 0,5 A &nbsp;|&nbsp; V<sub>d</sub> = 4 V</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 05 — RESUMEN                          -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">05 — Síntesis</div>
+  <h2>Cuadro resumen de las Leyes de Kirchhoff</h2>
+  <table class="sum-table">
+    <tbody><tr><th>Ley</th><th>Enunciado</th><th>Principio físico</th><th>Fórmula</th></tr>
+    <tr>
+      <td><strong style="color:var(--blue);font-family:&#39;IBM Plex Mono&#39;,monospace">LCK</strong></td>
+      <td>La suma de corrientes en un nodo es cero</td>
+      <td>Conservación de la carga</td>
+      <td><span style="font-family:&#39;IBM Plex Mono&#39;,monospace;color:var(--blue)">∑iₖ = 0</span></td>
+    </tr>
+    <tr>
+      <td><strong style="color:var(--purple);font-family:&#39;IBM Plex Mono&#39;,monospace">LVK</strong></td>
+      <td>La suma de voltajes en un lazo cerrado es cero</td>
+      <td>Conservación de la energía</td>
+      <td><span style="font-family:&#39;IBM Plex Mono&#39;,monospace;color:var(--purple)">∑vₖ = 0</span></td>
+    </tr>
+  </tbody></table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 06 — REFERENCIAS                      -->
+<!-- ══════════════════════════════════════ -->
+<section>
+  <div class="sec-label">06 — Referencias bibliográficas</div>
+  <h2>Fuentes de información</h2>
+  <ul class="ref-list">
+    <li><div><strong style="color:#1a1f2e">Alexander, C.K. &amp; Sadiku, M.N.O.</strong><br><em>Fundamentos de Circuitos Eléctricos</em> (6.ª ed.). McGraw-Hill Education, 2017.<br><span style="font-size:.8rem">Cap. 2 y 3: Leyes de Ohm y Kirchhoff, Análisis de Mallas y Nodos.</span></div></li>
+    <li><div><strong style="color:#1a1f2e">Nilsson, J.W. &amp; Riedel, S.A.</strong><br><em>Circuitos Eléctricos</em> (10.ª ed.). Pearson Educación, 2019.<br><span style="font-size:.8rem">Cap. 4: Técnicas de análisis de circuitos.</span></div></li>
+    <li><div><strong style="color:#1a1f2e">Hayt, W.H., Kemmerly, J.E. &amp; Durbin, S.M.</strong><br><em>Engineering Circuit Analysis</em> (8.ª ed.). McGraw-Hill, 2012.<br><span style="font-size:.8rem">Cap. 3: Voltage and Current Laws.</span></div></li>
+    <li><div><strong style="color:#1a1f2e">Boylestad, R.L.</strong><br><em>Introducción al Análisis de Circuitos</em> (12.ª ed.). Pearson, 2011.<br><span style="font-size:.8rem">Cap. 6: Leyes de Kirchhoff.</span></div></li>
+    <li><div><strong style="color:#1a1f2e">Dorf, R.C. &amp; Svoboda, J.A.</strong><br><em>Introduction to Electric Circuits</em> (9.ª ed.). Wiley, 2013.<br><span style="font-size:.8rem">Cap. 3: Resistive Circuits.</span></div></li>
+    <li><div><strong style="color:#1a1f2e">Kirchhoff, G.R.</strong><br><em>Ueber den Durchgang eines elektrischen Stromes durch eine Ebene.</em> Annalen der Physik, 140(4), 1847.<br><span style="font-size:.8rem">Artículo original donde Kirchhoff enuncia por primera vez sus leyes.</span></div></li>
+  </ul>
+  <div style="text-align:center;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+    <p style="font-size:.82rem;color:var(--muted);font-style:italic">Guía elaborada para Redes Eléctricas I — Ingeniería Civil Eléctrica</p>
+  </div>
+</section>
+
+</main>
+
+
+</body></html>
