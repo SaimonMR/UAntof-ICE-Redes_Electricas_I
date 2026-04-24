@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///C:/Users/Lenovo/Downloads/index.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redes Eléctricas I · UAntof ICE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./Redes Eléctricas I · UAntof ICE_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f9fb;
+    --surface2: #eef1f7;
+    --accent: #1a56db;
+    --accent2: #0e9f6e;
+    --accent3: #7e3af2;
+    --amber: #d97706;
+    --text: #1a1f2e;
+    --muted: #6b7280;
+    --border: #d1d5db;
+    --border-light: #e9ecf2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #0f172a;
+    border-bottom: 1px solid #1e293b;
+    padding: 4rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(26,86,219,.18) 0%, transparent 70%);
+  }
+  header > * { position: relative; }
+
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    background: rgba(26,86,219,.15);
+    border: 1px solid rgba(26,86,219,.35);
+    color: #93c5fd;
+    padding: .25rem .75rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    color: #fff;
+  }
+  h1 span { color: #60a5fa; }
+
+  .header-sub {
+    margin-top: .9rem;
+    color: #94a3b8;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: .02em;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.8rem;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .75rem;
+    color: #64748b;
+    letter-spacing: .06em;
+  }
+  .meta-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #1a56db;
+  }
+
+  /* ── LAYOUT ── */
+  main { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+  /* ── UNIDADES ── */
+  .unidad-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+    margin-top: 2.5rem;
+  }
+  .unidad-label:first-of-type { margin-top: 0; }
+
+  .unidad-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--border-light);
+  }
+
+  /* ── CARDS DE APUNTES ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: .5rem;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: box-shadow .15s, border-color .15s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    box-shadow: 0 4px 20px rgba(26,86,219,.1);
+    border-color: #93c5fd;
+  }
+  .card:hover .card-arrow { opacity: 1; transform: translateX(3px); }
+
+  .card-top {
+    padding: 1rem 1.1rem .8rem;
+    border-bottom: 1px solid var(--border-light);
+    background: var(--surface);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+  .card-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: #fff;
+    padding: .2rem .55rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .card-num.disponible { background: var(--accent2); }
+  .card-num.proximo    { background: #64748b; }
+
+  .card-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: .2rem .5rem;
+    border-radius: 3px;
+    background: var(--surface2);
+    border: 1px solid var(--border-light);
+    flex-shrink: 0;
+  }
+  .card-status.ok {
+    color: var(--accent2);
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+
+  .card-body { padding: .9rem 1.1rem 1rem; flex: 1; }
+
+  .card-title {
+    font-size: .97rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: .5rem;
+  }
+
+  .card-desc {
+    font-size: .83rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .card-footer {
+    padding: .65rem 1.1rem;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+  }
+  .card-tags {
+    display: flex;
+    gap: .35rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .62rem;
+    padding: .1rem .4rem;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 1px solid var(--border-light);
+  }
+  .card-arrow {
+    font-size: .9rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity .15s, transform .15s;
+  }
+
+  /* card deshabilitada */
+  .card.disabled {
+    pointer-events: none;
+    opacity: .6;
+    filter: grayscale(.4);
+  }
+
+  /* ── INTRO BLURB ── */
+  .intro {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2.5rem;
+    font-size: .93rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .intro strong { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border-light);
+    font-size: .82rem;
+    color: var(--muted);
+    background: var(--surface);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .header-meta { gap: .8rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">UNIVERSIDAD DE ANTOFAGASTA · ICE</div>
+  <h1>Redes <span>Eléctricas I</span></h1>
+  <p class="header-sub">Material docente de apoyo · Teoría, ejercicios resueltos y propuestos con enfoque en aprendizaje activo</p>
+  <div class="header-meta">
+    <span class="meta-item"><span class="meta-dot"></span>Ingeniería Civil Eléctrica</span>
+    <span class="meta-item"><span class="meta-dot" style="background:#0e9f6e"></span>Semestre 2025</span>
+    <span class="meta-item"><span class="meta-dot" style="background:#7e3af2"></span>github.io / saimonmr</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="intro">
+    Este sitio reúne los apuntes de la asignatura <strong>Redes Eléctricas I</strong>. Cada apunte incluye definiciones, fórmulas, diagramas de circuitos, ejemplos resueltos paso a paso y ejercicios propuestos con resultado final. El material se actualiza a lo largo del semestre conforme avanza el curso.
+  </div>
+
+  <!-- ══════════════════════ UNIDAD 1 ══════════════════════ -->
+  <div class="unidad-label">Unidad 1</div>
+  <div class="unidad-titulo">Fundamentos de Circuitos Eléctricos</div>
+
+  <div class="cards-grid">
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U1 · 01</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Conceptos básicos: carga, corriente, tensión y potencia</div>
+        <div class="card-desc">Definiciones fundamentales, unidades del SI, convenciones de signo y relaciones básicas entre magnitudes eléctricas.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Definiciones</span></div>
+      </div>
+    </a>
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U1 · 02</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Ley de Ohm y elementos de circuito</div>
+        <div class="card-desc">Resistencia, fuentes independientes de voltaje y corriente. Convención pasiva de signos.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U1 · 03</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Leyes de Kirchhoff (LVK y LCK)</div>
+        <div class="card-desc">Ley de voltajes y corrientes de Kirchhoff. Nodos, mallas y ramas. Aplicación sistemática en circuitos simples.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejemplos</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ══════════════════════ UNIDAD 2 ══════════════════════ -->
+  <div class="unidad-label">Unidad 2</div>
+  <div class="unidad-titulo">Técnicas de Análisis de Circuitos Resistivos</div>
+
+  <div class="cards-grid">
+
+    <a href="file:///C:/Users/Lenovo/Downloads/U2_02_Conexiones_Serie_Paralelo/index.html" class="card">
+      <div class="card-top">
+        <span class="card-num disponible">U2 · 01</span>
+        <span class="card-status ok">Disponible</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Conexiones Serie y Paralelo, Divisores y Conductancia</div>
+        <div class="card-desc">Resistencia equivalente, divisor de tensión y corriente, conductancia, fuentes en circuitos con reducción. Incluye 20 ejercicios propuestos con diagramas.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">Teoría</span>
+          <span class="tag">Diagramas</span>
+          <span class="tag">20 ejercicios</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U2 · 02</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Análisis de nodos (Método Nodal)</div>
+        <div class="card-desc">Planteamiento sistemático de ecuaciones nodales. Nodo de referencia, supernodos y resolución de sistemas lineales.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U2 · 03</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Análisis de mallas (Método de Mallas)</div>
+        <div class="card-desc">Corrientes de malla, supermallas, comparación con el método nodal y criterios de elección según el circuito.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U2 · 04</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Teoremas de Circuitos: Thévenin y Norton</div>
+        <div class="card-desc">Equivalente de Thévenin y Norton, máxima transferencia de potencia, aplicaciones en circuitos resistivos.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ══════════════════════ UNIDAD 3 ══════════════════════ -->
+  <div class="unidad-label">Unidad 3</div>
+  <div class="unidad-titulo">Circuitos con Elementos Almacenadores de Energía</div>
+
+  <div class="cards-grid">
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U3 · 01</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Condensadores e Inductores</div>
+        <div class="card-desc">Capacitancia, inductancia, relaciones v-i, energía almacenada y combinaciones en serie y paralelo.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+    <a href="file:///C:/Users/Lenovo/Downloads/index.html#" class="card disabled">
+      <div class="card-top">
+        <span class="card-num proximo">U3 · 02</span>
+        <span class="card-status">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Respuesta natural y escalón — Circuitos RC y RL</div>
+        <div class="card-desc">Respuesta transitoria de primer orden, constante de tiempo τ, respuesta completa y condiciones iniciales.</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag">Teoría</span><span class="tag">Ejercicios</span></div>
+      </div>
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>Material docente · Redes Eléctricas I · Ingeniería Civil Eléctrica · Universidad de Antofagasta</p>
+  <p style="margin-top:.4rem;">Repositorio en <a href="https://github.com/SaimonMR/UAntof-ICE-Redes_Electricas_I" target="_blank">GitHub</a> · Publicado con GitHub Pages</p>
+</footer>
+
+
+
+</body></html>
